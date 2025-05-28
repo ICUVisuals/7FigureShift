@@ -107,7 +107,7 @@
 <!-- Form Container -->
 <div class="bg-black bg-opacity-60 rounded-xl p-8 neon-border" style="box-shadow: rgb(0, 238, 255) 0px 0px 5px, rgb(0, 238, 255) 0px 0px 10px, rgb(0, 238, 255) 0px 0px 15px;">
 <h2 class="text-2xl font-bold mb-8 text-center">Event Registration Form</h2>
-<form class="space-y-8" id="registrationForm">
+<form action="https://formsubmit.co/7fsllc@gmail.com" class="space-y-8" id="registrationForm" method="POST">
 <!-- Name Field -->
 <div>
 <label class="block text-sm font-medium mb-2" for="fullName">Name (First and Last)</label>
@@ -219,7 +219,6 @@
 </div>
 </form>
 </div>
-</div>
 <!-- Success Modal -->
 <div class="fixed inset-0 flex items-center justify-center z-50 hidden" id="successModal">
 <div class="absolute inset-0 bg-black opacity-80"></div>
@@ -234,61 +233,6 @@
 </div>
 </div>
 </div>
-<script>
-        // Store submissions in local storage
-        let submissions = JSON.parse(localStorage.getItem('eventSubmissions')) || [];
-        
-        // Form submission handler
-        document.getElementById('registrationForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get selected events
-            const selectedEvents = [];
-            document.querySelectorAll('input[name="events"]:checked').forEach(checkbox => {
-                selectedEvents.push(checkbox.value);
-            });
-            
-            // Create submission object
-            const submission = {
-                id: Date.now(),
-                date: new Date().toLocaleString(),
-                name: document.getElementById('fullName').value,
-                email: document.getElementById('email').value,
-                business: document.getElementById('businessInfo').value,
-                industry: document.getElementById('industry').value,
-                events: selectedEvents,
-                ticketQuantity: document.getElementById('ticketQuantity').value
-            };
-            
-            // Add to submissions array
-            submissions.push(submission);
-            
-            // Save to local storage
-            localStorage.setItem('eventSubmissions', JSON.stringify(submissions));
-            
-            // Show success modal
-            document.getElementById('successModal').classList.remove('hidden');
-            
-            // Reset form
-            this.reset();
-        });
-        
-        // Close modal button
-        document.getElementById('closeModalBtn').addEventListener('click', function() {
-            document.getElementById('successModal').classList.add('hidden');
-        });
-        
-        // Add subtle animation to neon elements
-        const neonElements = document.querySelectorAll('.neon-border, .neon-button');
-        neonElements.forEach(el => {
-            setInterval(() => {
-                const currentShadow = el.style.boxShadow;
-                el.style.boxShadow = currentShadow.includes('15px') ? 
-                    '0 0 5px #00eeff, 0 0 10px #00eeff' : 
-                    '0 0 5px #00eeff, 0 0 10px #00eeff, 0 0 15px #00eeff';
-            }, 2000 + Math.random() * 1000);
-        });
-    </script>
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'946a3a61e7171f4e',t:'MTc0ODM5ODM1Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><iframe height="1" style="position: absolute; top: 0px; left: 0px; border: none; visibility: hidden;" width="1"></iframe>
 </body>
 </html>
