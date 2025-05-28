@@ -504,7 +504,159 @@
             </div>
         </div>
     </div>
-<!-- Form Container -->
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'946a3a61e7171f4e',t:'MTc0ODM5ODM1Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><iframe height="1" style="position: absolute; top: 0px; left: 0px; border: none; visibility: hidden;" width="1"></iframe>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const openFormBtn = document.getElementById("openFormBtn");
+      const closeFormBtn = document.getElementById("closeFormBtn");
+      const formModal = document.getElementById("formModal");
+      const successModal = document.getElementById("successModal");
+      const closeSuccessBtn = document.getElementById("closeModalBtn");
+      const form = document.getElementById("registrationForm");
+
+      openFormBtn.addEventListener("click", () => {
+        formModal.style.display = "flex";
+      });
+
+      closeFormBtn.addEventListener("click", () => {
+        formModal.style.display = "none";
+      });
+
+      form.addEventListener("submit", function () {
+        setTimeout(() => {
+          formModal.style.display = "none";
+          successModal.classList.remove("hidden");
+          successModal.classList.add("flex");
+          form.reset();
+        }, 500);
+      });
+
+      closeSuccessBtn.addEventListener("click", () => {
+        successModal.classList.add("hidden");
+        successModal.classList.remove("flex");
+      });
+    });
+  </script>    
+    
+    <script>
+        // Mobile menu functionality
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const closeMenuButton = document.getElementById('close-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.remove('translate-x-full');
+        });
+        
+        closeMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.add('translate-x-full');
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('translate-x-full');
+            });
+        });
+        
+        
+        // Form submission
+        document.getElementById('rsvp-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your RSVP! A confirmation has been sent to your email.');
+            rsvpModal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        });
+        
+        // Notification Modal functionality
+        const notifyBtn = document.getElementById('notify-btn');
+        const waitlistBtn = document.getElementById('waitlist-btn');
+        const notificationModal = document.getElementById('notification-modal');
+        const closeNotificationButtons = document.querySelectorAll('.close-notification');
+        
+        notifyBtn.addEventListener('click', () => {
+            notificationModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        });
+        
+        waitlistBtn.addEventListener('click', () => {
+            notificationModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        });
+        
+        closeNotificationButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                notificationModal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            });
+        });
+        
+        // Notification form submission
+        document.getElementById('notification-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for signing up! You will be notified when new events are available.');
+            notificationModal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        });
+        
+        // Video Modal functionality
+        const playVideoBtn = document.getElementById('play-video');
+        const videoModal = document.getElementById('video-modal');
+        const closeVideoBtn = document.getElementById('close-video');
+        
+        playVideoBtn.addEventListener('click', () => {
+            videoModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        });
+        
+        closeVideoBtn.addEventListener('click', () => {
+            videoModal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        });
+        
+        // Close modals when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === rsvpModal) {
+                rsvpModal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
+            if (e.target === notificationModal) {
+                notificationModal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
+            if (e.target === videoModal) {
+                videoModal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    const navHeight = document.querySelector('nav').offsetHeight;
+                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+<!-- Modal Overlay -->
+  <div id="formModal" class="fixed inset-0 bg-black bg-opacity-90 z-50 hidden items-center justify-center p-4">
+    <div class="relative bg-gray-900 text-white rounded-lg shadow-lg w-full max-w-4xl overflow-y-auto max-h-full p-6">
+      <button id="closeModal" class="absolute top-4 right-4 text-white text-2xl">
+        <i class="fas fa-times"></i>
+      </button>
+      <!-- Form Container -->
 <div class="bg-black bg-opacity-60 rounded-xl p-8 neon-border" style="box-shadow: rgb(0, 238, 255) 0px 0px 5px, rgb(0, 238, 255) 0px 0px 10px, rgb(0, 238, 255) 0px 0px 15px;">
 <h2 class="text-2xl font-bold mb-8 text-center">Event Registration Form</h2>
 <form action="https://formsubmit.co/7fsllc@gmail.com" class="space-y-8" id="registrationForm" method="POST">
@@ -633,186 +785,7 @@
 </div>
 </div>
 </div>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'946a3a61e7171f4e',t:'MTc0ODM5ODM1Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><iframe height="1" style="position: absolute; top: 0px; left: 0px; border: none; visibility: hidden;" width="1"></iframe>
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const form = document.getElementById("registrationForm");
-    const modal = window.parent?.document.getElementById("formModal");
-    const successModal = document.getElementById("successModal");
-    const closeSuccessBtn = document.getElementById("closeModalBtn");
-
-    form.addEventListener("submit", function () {
-      setTimeout(() => {
-        if (modal) {
-          modal.classList.add("hidden");
-          modal.classList.remove("flex");
-        }
-        successModal.classList.remove("hidden");
-        successModal.classList.add("flex");
-        form.reset();
-      }, 500);
-    });
-
-    closeSuccessBtn.addEventListener("click", () => {
-      successModal.classList.add("hidden");
-      successModal.classList.remove("flex");
-    });
-  });
-</script>
-
-    <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const rsvpBtn = document.getElementById("rsvpBtn");
-      const formModal = document.getElementById("formModal");
-      const successModal = document.getElementById("successModal");
-      const form = document.getElementById("registrationForm");
-      const closeSuccessBtn = document.getElementById("closeSuccessBtn");
-
-      rsvpBtn.addEventListener("click", () => {
-        formModal.classList.remove("hidden");
-        formModal.classList.add("flex");
-      });
-
-      form.addEventListener("submit", function () {
-        setTimeout(() => {
-          formModal.classList.add("hidden");
-          formModal.classList.remove("flex");
-          successModal.classList.remove("hidden");
-          successModal.classList.add("flex");
-          form.reset();
-        }, 500);
-      });
-
-      closeSuccessBtn.addEventListener("click", () => {
-        successModal.classList.add("hidden");
-        successModal.classList.remove("flex");
-      });
-    });
-  </script>
-
-    <script>
-        // Mobile menu functionality
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const closeMenuButton = document.getElementById('close-menu');
-        const mobileMenu = document.getElementById('mobile-menu');
-        
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.remove('translate-x-full');
-        });
-        
-        closeMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.add('translate-x-full');
-        });
-        
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('#mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('translate-x-full');
-            });
-        });
-        
-        
-        // Form submission
-        document.getElementById('rsvp-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Thank you for your RSVP! A confirmation has been sent to your email.');
-            rsvpModal.classList.add('hidden');
-            document.body.style.overflow = 'auto';
-        });
-        
-        // Notification Modal functionality
-        const notifyBtn = document.getElementById('notify-btn');
-        const waitlistBtn = document.getElementById('waitlist-btn');
-        const notificationModal = document.getElementById('notification-modal');
-        const closeNotificationButtons = document.querySelectorAll('.close-notification');
-        
-        notifyBtn.addEventListener('click', () => {
-            notificationModal.classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
-        });
-        
-        waitlistBtn.addEventListener('click', () => {
-            notificationModal.classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
-        });
-        
-        closeNotificationButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                notificationModal.classList.add('hidden');
-                document.body.style.overflow = 'auto';
-            });
-        });
-        
-        // Notification form submission
-        document.getElementById('notification-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Thank you for signing up! You will be notified when new events are available.');
-            notificationModal.classList.add('hidden');
-            document.body.style.overflow = 'auto';
-        });
-        
-        // Video Modal functionality
-        const playVideoBtn = document.getElementById('play-video');
-        const videoModal = document.getElementById('video-modal');
-        const closeVideoBtn = document.getElementById('close-video');
-        
-        playVideoBtn.addEventListener('click', () => {
-            videoModal.classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
-        });
-        
-        closeVideoBtn.addEventListener('click', () => {
-            videoModal.classList.add('hidden');
-            document.body.style.overflow = 'auto';
-        });
-        
-        // Close modals when clicking outside
-        window.addEventListener('click', (e) => {
-            if (e.target === rsvpModal) {
-                rsvpModal.classList.add('hidden');
-                document.body.style.overflow = 'auto';
-            }
-            if (e.target === notificationModal) {
-                notificationModal.classList.add('hidden');
-                document.body.style.overflow = 'auto';
-            }
-            if (e.target === videoModal) {
-                videoModal.classList.add('hidden');
-                document.body.style.overflow = 'auto';
-            }
-        });
-        
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                
-                if (targetElement) {
-                    const navHeight = document.querySelector('nav').offsetHeight;
-                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navHeight;
-                    
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-    </script>
-<!-- Modal Overlay -->
-  <div id="formModal" class="fixed inset-0 bg-black bg-opacity-90 z-50 hidden items-center justify-center p-4">
-    <div class="relative bg-gray-900 text-white rounded-lg shadow-lg w-full max-w-4xl overflow-y-auto max-h-full p-6">
-      <button id="closeModal" class="absolute top-4 right-4 text-white text-2xl">
-        <i class="fas fa-times"></i>
-      </button>
-      <iframe src="form.html" class="w-full h-[90vh] rounded-md border border-blue-400"></iframe>
-    </div>
-  </div>
-
-  <!-- Add this just before the closing </body> tag -->
+</div>
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const modal = document.getElementById("formModal");
