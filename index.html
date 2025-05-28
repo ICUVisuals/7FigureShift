@@ -59,10 +59,57 @@
             font-weight: 600;
         }
         
+        .neon-border {
+            box-shadow: 0 0 5px #ff00dd, 0 0 10px #ff00dd, 0 0 15px #ff00dd;
+            border: 1px solid rgba(255, 0, 221, 0.7);
+        }
+        
+        .neon-text {
+            text-shadow: 0 0 5px #00eeff, 0 0 10px #00eeff, 0 0 15px #00eeff;
+            color: #fff;
+        }
+
         .neon-button:hover {
             background-color: rgba(255, 0, 255, 0.2);
             box-shadow: 0 0 10px #ff00ff, inset 0 0 10px #ff00ff;
             transform: translateY(-2px);
+        }
+        
+        input[type="text"], input[type="email"], textarea {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+        
+        input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
+            border-color: #00eeff;
+            box-shadow: 0 0 5px #00eeff;
+        }
+        
+        input[type="checkbox"] {
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        input[type="checkbox"]:checked {
+            background-color: rgba(0, 238, 255, 0.7);
+            border-color: #00eeff;
+        }
+        
+        input[type="checkbox"]:checked::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 14px;
         }
         
         .orbitron {
@@ -73,6 +120,18 @@
             background-image: linear-gradient(rgba(0, 243, 255, 0.1) 1px, transparent 1px),
                               linear-gradient(90deg, rgba(0, 243, 255, 0.1) 1px, transparent 1px);
             background-size: 20px 20px;
+        }
+        
+        .event-option {
+            transition: all 0.3s ease;
+        }
+        
+        .event-option:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+        
+        .submission-item {
+            border-left: 3px solid #00eeff;
         }
         
         .event-card {
