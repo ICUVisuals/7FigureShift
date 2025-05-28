@@ -133,7 +133,7 @@
         .submission-item {
             border-left: 3px solid #00eeff;
         }
-        
+
         .event-card {
             background: rgba(0, 0, 0, 0.7);
             backdrop-filter: blur(10px);
@@ -719,6 +719,10 @@
 <div class="bg-black bg-opacity-60 rounded-xl p-8 neon-border" style="box-shadow: rgb(0, 238, 255) 0px 0px 5px, rgb(0, 238, 255) 0px 0px 10px, rgb(0, 238, 255) 0px 0px 15px;">
 <h2 class="text-2xl font-bold mb-8 text-center">Event Registration Form</h2>
 <form action="https://formsubmit.co/7fsllc@gmail.com" class="space-y-8" id="registrationForm" method="POST">
+<!-- Disable CAPTCHA -->
+  <input type="hidden" name="_captcha" value="false">
+  <!-- Prevent redirect to external thank-you page -->
+  <input type="hidden" name="_next" value="/">
 <!-- Name Field -->
 <div>
 <label class="block text-sm font-medium mb-2" for="fullName">Name (First and Last)</label>
@@ -830,20 +834,18 @@
 </div>
 </form>
 </div>
-<!-- Success Modal -->
-<div class="fixed inset-0 flex items-center justify-center z-50 hidden" id="successModal">
-<div class="absolute inset-0 bg-black opacity-80"></div>
-<div class="relative bg-gray-900 p-8 rounded-xl neon-border max-w-md w-full" style="box-shadow: rgb(0, 238, 255) 0px 0px 5px, rgb(0, 238, 255) 0px 0px 10px, rgb(0, 238, 255) 0px 0px 15px;">
-<h3 class="text-2xl font-bold mb-4 neon-text">Registration Submitted!</h3>
-<p class="mb-6">Thank you for registering for the 7 Figure Shift event. We will review your application and contact you within 48 hours.</p>
-<div class="text-center">
-<button class="px-6 py-2 rounded-lg bg-black neon-button text-white" id="closeModalBtn" style="box-shadow: rgb(0, 238, 255) 0px 0px 5px, rgb(0, 238, 255) 0px 0px 10px, rgb(0, 238, 255) 0px 0px 15px;">
+<div id="successModal" class="fixed inset-0 flex items-center justify-center z-50">
+            <div class="absolute inset-0 bg-black opacity-80"></div>
+            <div class="relative bg-gray-900 p-8 rounded-xl neon-border max-w-md w-full" style="box-shadow: rgb(0, 238, 255) 0px 0px 5px, rgb(0, 238, 255) 0px 0px 10px, rgb(0, 238, 255) 0px 0px 15px;">
+                <h3 class="text-2xl font-bold mb-4 neon-text">Registration Submitted!</h3>
+                <p class="mb-6">Thank you for registering for the 7 Figure Shift event. We will review your application and contact you within 48 hours.</p>
+                <div class="text-center">
+                    <button id="closeModalBtn" class="px-6 py-2 rounded-lg bg-black neon-button text-white" style="box-shadow: rgb(0, 238, 255) 0px 0px 5px, rgb(0, 238, 255) 0px 0px 10px, rgb(0, 238, 255) 0px 0px 15px;">
                         Close
                     </button>
-</div>
-</div>
-</div>
-</div>
+                </div>
+            </div>
+        </div>
 </div>
   <script>
     document.addEventListener("DOMContentLoaded", function () {
