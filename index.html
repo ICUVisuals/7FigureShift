@@ -504,6 +504,191 @@
             </div>
         </div>
     </div>
+<!-- Form Container -->
+<div class="bg-black bg-opacity-60 rounded-xl p-8 neon-border" style="box-shadow: rgb(0, 238, 255) 0px 0px 5px, rgb(0, 238, 255) 0px 0px 10px, rgb(0, 238, 255) 0px 0px 15px;">
+<h2 class="text-2xl font-bold mb-8 text-center">Event Registration Form</h2>
+<form action="https://formsubmit.co/7fsllc@gmail.com" class="space-y-8" id="registrationForm" method="POST">
+<!-- Name Field -->
+<div>
+<label class="block text-sm font-medium mb-2" for="fullName">Name (First and Last)</label>
+<input class="w-full px-4 py-3 rounded-lg focus:outline-none" id="fullName" name="fullName" required="" type="text"/>
+</div>
+<!-- Email Address Field -->
+<div>
+<label class="block text-sm font-medium mb-2" for="email">Email Address</label>
+<input class="w-full px-4 py-3 rounded-lg focus:outline-none" id="email" name="email" required="" type="email"/>
+</div>
+<!-- Business Name and Title -->
+<div>
+<label class="block text-sm font-medium mb-2" for="businessInfo">Name of Business and Title</label>
+<input class="w-full px-4 py-3 rounded-lg focus:outline-none" id="businessInfo" name="businessInfo" required="" type="text"/>
+</div>
+<!-- Industry -->
+<div>
+<label class="block text-sm font-medium mb-2" for="industry">Industry</label>
+<input class="w-full px-4 py-3 rounded-lg focus:outline-none" id="industry" name="industry" required="" type="text"/>
+</div>
+<!-- Event Selection -->
+<div>
+<label class="block text-sm font-medium mb-4">Which event would you like to attend?</label>
+<div class="space-y-6">
+<!-- Health/Medical Events -->
+<div class="p-4 rounded-lg event-option bg-opacity-20 bg-purple-900">
+<h3 class="font-semibold text-purple-300 mb-2">Health/Medical - Nov 8th, 2025</h3>
+<div class="ml-4 space-y-2">
+<div class="flex items-center">
+<input class="mr-3" id="health-morning" name="events" type="checkbox" value="Health/Medical - Nov 8th, 2025 (Morning)"/>
+<label for="health-morning">Morning - 9 am - 2 pm</label>
+</div>
+<div class="flex items-center">
+<input class="mr-3" id="health-evening" name="events" type="checkbox" value="Health/Medical - Nov 8th, 2025 (Evening)"/>
+<label for="health-evening">Evening - 3 pm - 8 pm</label>
+</div>
+</div>
+</div>
+<!-- Tech Events -->
+<div class="p-4 rounded-lg event-option bg-opacity-20 bg-blue-900">
+<h3 class="font-semibold text-blue-300 mb-2">Tech - Feb 7th, 2026</h3>
+<div class="ml-4 space-y-2">
+<div class="flex items-center">
+<input class="mr-3" id="tech-morning" name="events" type="checkbox" value="Tech - Feb 7th, 2026 (Morning)"/>
+<label for="tech-morning">Morning - 9 am - 2 pm</label>
+</div>
+<div class="flex items-center">
+<input class="mr-3" id="tech-evening" name="events" type="checkbox" value="Tech - Feb 7th, 2026 (Evening)"/>
+<label for="tech-evening">Evening - 3 pm - 8 pm</label>
+</div>
+</div>
+</div>
+<!-- Law Events -->
+<div class="p-4 rounded-lg event-option bg-opacity-20 bg-green-900">
+<h3 class="font-semibold text-green-300 mb-2">Law - May 9th, 2026</h3>
+<div class="ml-4 space-y-2">
+<div class="flex items-center">
+<input class="mr-3" id="law-morning" name="events" type="checkbox" value="Law - May 9th, 2026 (Morning)"/>
+<label for="law-morning">Morning - 9 am - 2 pm</label>
+</div>
+<div class="flex items-center">
+<input class="mr-3" id="law-evening" name="events" type="checkbox" value="Law - May 9th, 2026 (Evening)"/>
+<label for="law-evening">Evening - 3 pm - 8 pm</label>
+</div>
+</div>
+</div>
+<!-- Creative/Vendor Events -->
+<div class="p-4 rounded-lg event-option bg-opacity-20 bg-pink-900">
+<h3 class="font-semibold text-pink-300 mb-2">Creative/Vendor - August 8th, 2026</h3>
+<div class="ml-4 space-y-2">
+<div class="flex items-center">
+<input class="mr-3" id="creative-morning" name="events" type="checkbox" value="Creative/Vendor - August 8th, 2026 (Morning)"/>
+<label for="creative-morning">Morning - 9 am - 2 pm</label>
+</div>
+<div class="flex items-center">
+<input class="mr-3" id="creative-evening" name="events" type="checkbox" value="Creative/Vendor - August 8th, 2026 (Evening)"/>
+<label for="creative-evening">Evening - 3 pm - 8 pm</label>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Ticket Information -->
+<div class="p-5 rounded-lg bg-gradient-to-r from-purple-900/30 to-pink-900/30">
+<p class="mb-4">Each ticket for this event is <span class="font-bold text-pink-300">$97.00</span> and comes with a meal and a complimentary mimosa or beer for each ticket.</p>
+<div class="flex items-center">
+<input class="mr-3" id="ticketUnderstanding" name="ticketUnderstanding" required="" type="checkbox"/>
+<label for="ticketUnderstanding">I understand</label>
+</div>
+</div>
+<!-- Ticket Quantity -->
+<div>
+<label class="block text-sm font-medium mb-2" for="ticketQuantity">How many Tickets would you like to purchase and for which events?</label>
+<textarea class="w-full px-4 py-3 rounded-lg focus:outline-none" id="ticketQuantity" name="ticketQuantity" required="" rows="3"></textarea>
+</div>
+<!-- Registration Policy -->
+<div class="p-5 rounded-lg bg-gradient-to-r from-blue-900/30 to-purple-900/30">
+<p class="mb-4">We can only accept 4 of each industry per session, so within 48 hours, you will know if you have been accepted for the time and date you desired, along with the invoice. You will have 48 hours to pay the invoice, or the registration will reset. If you aren't accepted, we will offer the next time and date available, where we are looking for more in your industry.</p>
+<div class="flex items-center">
+<input class="mr-3" id="policyUnderstanding" name="policyUnderstanding" required="" type="checkbox"/>
+<label for="policyUnderstanding">I understand</label>
+</div>
+</div>
+<!-- Submit Button -->
+<div class="text-center">
+<button class="px-8 py-3 rounded-lg bg-black neon-button text-white font-bold text-lg" style="box-shadow: rgb(0, 238, 255) 0px 0px 5px, rgb(0, 238, 255) 0px 0px 10px, rgb(0, 238, 255) 0px 0px 15px;" type="submit">
+                        Submit Registration
+                    </button>
+</div>
+</form>
+</div>
+<!-- Success Modal -->
+<div class="fixed inset-0 flex items-center justify-center z-50 hidden" id="successModal">
+<div class="absolute inset-0 bg-black opacity-80"></div>
+<div class="relative bg-gray-900 p-8 rounded-xl neon-border max-w-md w-full" style="box-shadow: rgb(0, 238, 255) 0px 0px 5px, rgb(0, 238, 255) 0px 0px 10px, rgb(0, 238, 255) 0px 0px 15px;">
+<h3 class="text-2xl font-bold mb-4 neon-text">Registration Submitted!</h3>
+<p class="mb-6">Thank you for registering for the 7 Figure Shift event. We will review your application and contact you within 48 hours.</p>
+<div class="text-center">
+<button class="px-6 py-2 rounded-lg bg-black neon-button text-white" id="closeModalBtn" style="box-shadow: rgb(0, 238, 255) 0px 0px 5px, rgb(0, 238, 255) 0px 0px 10px, rgb(0, 238, 255) 0px 0px 15px;">
+                        Close
+                    </button>
+</div>
+</div>
+</div>
+</div>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'946a3a61e7171f4e',t:'MTc0ODM5ODM1Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><iframe height="1" style="position: absolute; top: 0px; left: 0px; border: none; visibility: hidden;" width="1"></iframe>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("registrationForm");
+    const modal = window.parent?.document.getElementById("formModal");
+    const successModal = document.getElementById("successModal");
+    const closeSuccessBtn = document.getElementById("closeModalBtn");
+
+    form.addEventListener("submit", function () {
+      setTimeout(() => {
+        if (modal) {
+          modal.classList.add("hidden");
+          modal.classList.remove("flex");
+        }
+        successModal.classList.remove("hidden");
+        successModal.classList.add("flex");
+        form.reset();
+      }, 500);
+    });
+
+    closeSuccessBtn.addEventListener("click", () => {
+      successModal.classList.add("hidden");
+      successModal.classList.remove("flex");
+    });
+  });
+</script>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const rsvpBtn = document.getElementById("rsvpBtn");
+      const formModal = document.getElementById("formModal");
+      const successModal = document.getElementById("successModal");
+      const form = document.getElementById("registrationForm");
+      const closeSuccessBtn = document.getElementById("closeSuccessBtn");
+
+      rsvpBtn.addEventListener("click", () => {
+        formModal.classList.remove("hidden");
+        formModal.classList.add("flex");
+      });
+
+      form.addEventListener("submit", function () {
+        setTimeout(() => {
+          formModal.classList.add("hidden");
+          formModal.classList.remove("flex");
+          successModal.classList.remove("hidden");
+          successModal.classList.add("flex");
+          form.reset();
+        }, 500);
+      });
+
+      closeSuccessBtn.addEventListener("click", () => {
+        successModal.classList.add("hidden");
+        successModal.classList.remove("flex");
+      });
+    });
+  </script>
 
     <script>
         // Mobile menu functionality
@@ -525,6 +710,7 @@
                 mobileMenu.classList.add('translate-x-full');
             });
         });
+        
         
         // Form submission
         document.getElementById('rsvp-form').addEventListener('submit', function(e) {
