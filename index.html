@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The 7-Figure Shift</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            background-color: #000;
+            font-family: 'Montserrat', sans-serif;
+            color: #fff;
+            overflow-x: hidden;
+        }
+        
+        .neon-blue {
+            color: #00f3ff;
+            text-shadow: 0 0 5px #00f3ff, 0 0 10px #00f3ff, 0 0 20px #00f3ff, 0 0 30px #00f3ff;
+            animation: pulsate 2s infinite alternate;
+        }
+        
+        .neon-pink {
+            color: #ff00ff;
+            text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+        }
+        
+        .neon-green {
+            color: #00ff66;
+            text-shadow: 0 0 5px #00ff66, 0 0 10px #00ff66, 0 0 20px #00ff66;
+        }
+        
+        .neon-purple {
+            color: #bf00ff;
+            text-shadow: 0 0 5px #bf00ff, 0 0 10px #bf00ff, 0 0 20px #bf00ff;
+        }
+        
+        .neon-box {
+            border: 2px solid #00f3ff;
+            box-shadow: 0 0 5px #00f3ff, 0 0 10px #00f3ff, inset 0 0 5px #00f3ff;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .neon-box:hover {
+            box-shadow: 0 0 10px #00f3ff, 0 0 20px #00f3ff, inset 0 0 10px #00f3ff;
+        }
+        
+        .neon-button {
+            background-color: transparent;
+            border: 2px solid #ff00ff;
+            color: #ff00ff;
+            text-shadow: 0 0 5px #ff00ff;
+            box-shadow: 0 0 5px #ff00ff, inset 0 0 5px #ff00ff;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+        
+        .neon-button:hover {
+            background-color: rgba(255, 0, 255, 0.2);
+            box-shadow: 0 0 10px #ff00ff, inset 0 0 10px #ff00ff;
+            transform: translateY(-2px);
+        }
+        
+        .orbitron {
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        .grid-pattern {
+            background-image: linear-gradient(rgba(0, 243, 255, 0.1) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(0, 243, 255, 0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        
+        .event-card {
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .event-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.5);
+        }
+        
+        @keyframes pulsate {
+            0% {
+                text-shadow: 0 0 5px #00f3ff, 0 0 10px #00f3ff, 0 0 20px #00f3ff;
+            }
+            100% {
+                text-shadow: 0 0 10px #00f3ff, 0 0 20px #00f3ff, 0 0 30px #00f3ff, 0 0 40px #00f3ff;
+            }
+        }
+        
+        .video-container {
+            position: relative;
+            overflow: hidden;
+            border: 2px solid #00f3ff;
+            box-shadow: 0 0 10px #00f3ff;
+        }
+        
+        .coming-soon {
+            background: linear-gradient(45deg, #000, #111);
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.2);
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #000;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #00f3ff;
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00c4cc;
+        }
+        
+        .modal {
+            backdrop-filter: blur(10px);
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+        
+        .modal-content {
+            background: linear-gradient(135deg, #000, #111);
+            border: 2px solid #00f3ff;
+            box-shadow: 0 0 20px #00f3ff;
+        }
+    </style>
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.16 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.container{width:100%}@media (min-width: 640px){.container{max-width:640px}}@media (min-width: 768px){.container{max-width:768px}}@media (min-width: 1024px){.container{max-width:1024px}}@media (min-width: 1280px){.container{max-width:1280px}}@media (min-width: 1536px){.container{max-width:1536px}}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.inset-0{inset:0px}.left-0{left:0px}.right-4{right:1rem}.top-0{top:0px}.top-4{top:1rem}.z-0{z-index:0}.z-10{z-index:10}.z-40{z-index:40}.z-50{z-index:50}.mx-auto{margin-left:auto;margin-right:auto}.mb-10{margin-bottom:2.5rem}.mb-16{margin-bottom:4rem}.mb-2{margin-bottom:0.5rem}.mb-3{margin-bottom:0.75rem}.mb-4{margin-bottom:1rem}.mb-6{margin-bottom:1.5rem}.mb-8{margin-bottom:2rem}.mr-2{margin-right:0.5rem}.mt-16{margin-top:4rem}.mt-4{margin-top:1rem}.mt-8{margin-top:2rem}.mt-auto{margin-top:auto}.block{display:block}.inline-block{display:inline-block}.flex{display:flex}.grid{display:grid}.hidden{display:none}.h-20{height:5rem}.h-24{height:6rem}.h-full{height:100%}.h-screen{height:100vh}.min-h-screen{min-height:100vh}.w-20{width:5rem}.w-24{width:6rem}.w-full{width:100%}.max-w-2xl{max-width:42rem}.max-w-3xl{max-width:48rem}.max-w-4xl{max-width:56rem}.max-w-md{max-width:28rem}.translate-x-full{--tw-translate-x:100%;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.transform{transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}@keyframes pulse{50%{opacity:.5}}.animate-pulse{animation:pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite}.grid-cols-1{grid-template-columns:repeat(1, minmax(0, 1fr))}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-center{align-items:center}.justify-end{justify-content:flex-end}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-4{gap:1rem}.gap-8{gap:2rem}.space-x-6 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(1.5rem * var(--tw-space-x-reverse));margin-left:calc(1.5rem * calc(1 - var(--tw-space-x-reverse)))}.space-y-4 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem * var(--tw-space-y-reverse))}.space-y-8 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(2rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(2rem * var(--tw-space-y-reverse))}.overflow-hidden{overflow:hidden}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:0.5rem}.rounded-md{border-radius:0.375rem}.border{border-width:1px}.border-2{border-width:2px}.border-b{border-bottom-width:1px}.border-t{border-top-width:1px}.border-blue-400{--tw-border-opacity:1;border-color:rgb(96 165 250 / var(--tw-border-opacity, 1))}.border-blue-900{--tw-border-opacity:1;border-color:rgb(30 58 138 / var(--tw-border-opacity, 1))}.border-gray-800{--tw-border-opacity:1;border-color:rgb(31 41 55 / var(--tw-border-opacity, 1))}.border-green-400{--tw-border-opacity:1;border-color:rgb(74 222 128 / var(--tw-border-opacity, 1))}.border-purple-400{--tw-border-opacity:1;border-color:rgb(192 132 252 / var(--tw-border-opacity, 1))}.bg-black{--tw-bg-opacity:1;background-color:rgb(0 0 0 / var(--tw-bg-opacity, 1))}.bg-gray-900{--tw-bg-opacity:1;background-color:rgb(17 24 39 / var(--tw-bg-opacity, 1))}.bg-opacity-80{--tw-bg-opacity:0.8}.bg-opacity-95{--tw-bg-opacity:0.95}.p-10{padding:2.5rem}.p-4{padding:1rem}.p-6{padding:1.5rem}.p-8{padding:2rem}.px-3{padding-left:0.75rem;padding-right:0.75rem}.px-4{padding-left:1rem;padding-right:1rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.px-8{padding-left:2rem;padding-right:2rem}.py-1{padding-top:0.25rem;padding-bottom:0.25rem}.py-10{padding-top:2.5rem;padding-bottom:2.5rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-20{padding-top:5rem;padding-bottom:5rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.py-4{padding-top:1rem;padding-bottom:1rem}.pt-4{padding-top:1rem}.pt-8{padding-top:2rem}.text-center{text-align:center}.text-2xl{font-size:1.5rem;line-height:2rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-5xl{font-size:3rem;line-height:1}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-xs{font-size:0.75rem;line-height:1rem}.font-bold{font-weight:700}.text-blue-400{--tw-text-opacity:1;color:rgb(96 165 250 / var(--tw-text-opacity, 1))}.text-gray-300{--tw-text-opacity:1;color:rgb(209 213 219 / var(--tw-text-opacity, 1))}.text-gray-400{--tw-text-opacity:1;color:rgb(156 163 175 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.opacity-10{opacity:0.1}.opacity-20{opacity:0.2}.backdrop-blur-md{--tw-backdrop-blur:blur(12px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition-colors{transition-property:color, background-color, border-color, fill, stroke, -webkit-text-decoration-color;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, -webkit-text-decoration-color;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-transform{transition-property:transform;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.duration-300{transition-duration:300ms}.ease-in-out{transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1)}.hover\:text-blue-400:hover{--tw-text-opacity:1;color:rgb(96 165 250 / var(--tw-text-opacity, 1))}.hover\:text-white:hover{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.focus\:border-blue-500:focus{--tw-border-opacity:1;border-color:rgb(59 130 246 / var(--tw-border-opacity, 1))}.focus\:border-green-500:focus{--tw-border-opacity:1;border-color:rgb(34 197 94 / var(--tw-border-opacity, 1))}.focus\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}@media (min-width: 768px){.md\:mb-0{margin-bottom:0px}.md\:flex{display:flex}.md\:hidden{display:none}.md\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.md\:flex-row{flex-direction:row}.md\:text-2xl{font-size:1.5rem;line-height:2rem}.md\:text-3xl{font-size:1.875rem;line-height:2.25rem}.md\:text-4xl{font-size:2.25rem;line-height:2.5rem}.md\:text-7xl{font-size:4.5rem;line-height:1}}@media (min-width: 1024px){.lg\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.lg\:text-8xl{font-size:6rem;line-height:1}}</style></head>
+<body class="grid-pattern min-h-screen">
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-black bg-opacity-80 backdrop-blur-md border-b border-blue-400 px-4 py-3">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center">
+                <h1 class="text-2xl md:text-3xl orbitron neon-blue font-bold">THE 7-FIGURE SHIFT</h1>
+            </div>
+            <div class="hidden md:flex space-x-6">
+                <a href="#mergers" class="hover:text-blue-400 transition-colors">Mergers</a>
+                <a href="#conferences" class="hover:text-blue-400 transition-colors">Conferences</a>
+                <a href="#training" class="hover:text-blue-400 transition-colors">Training</a>
+                <a href="#past-events" class="hover:text-blue-400 transition-colors">Past Events</a>
+            </div>
+            <button class="md:hidden text-white text-2xl" id="mobile-menu-button">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+    
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-95 z-40 transform translate-x-full transition-transform duration-300 ease-in-out">
+        <div class="flex justify-end p-4">
+            <button id="close-menu" class="text-white text-2xl">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="flex flex-col items-center space-y-8 mt-16">
+            <a href="#mergers" class="text-xl hover:text-blue-400 transition-colors">Mergers</a>
+            <a href="#conferences" class="text-xl hover:text-blue-400 transition-colors">Conferences</a>
+            <a href="#training" class="text-xl hover:text-blue-400 transition-colors">Training</a>
+            <a href="#past-events" class="text-xl hover:text-blue-400 transition-colors">Past Events</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <header class="relative h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <svg class="w-full h-full opacity-20" viewBox="0 0 100 100" preserveAspectRatio="none">
+                <defs>
+                    <radialGradient id="rgrad" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+                        <stop offset="0%" style="stop-color:#00f3ff;stop-opacity:0.3"></stop>
+                        <stop offset="100%" style="stop-color:#000;stop-opacity:0"></stop>
+                    </radialGradient>
+                </defs>
+                <rect x="0" y="0" width="100" height="100" fill="url(#rgrad)">
+                    <animate attributeName="opacity" values="0.3;0.6;0.3" dur="4s" repeatCount="indefinite"></animate>
+                </rect>
+            </svg>
+        </div>
+        <div class="container mx-auto px-4 z-10 text-center">
+            <h1 class="text-5xl md:text-7xl lg:text-8xl orbitron neon-blue font-bold mb-6">THE 7-FIGURE SHIFT</h1>
+            <p class="text-xl md:text-2xl max-w-3xl mx-auto mb-10">Exclusive mergers and conferences for industry leaders and visionaries</p>
+            <a href="#mergers" class="neon-button px-8 py-4 rounded-md text-lg">Explore Events</a>
+        </div>
+    </header>
+
+    <!-- Upcoming Mergers Section -->
+    <section id="mergers" class="py-20 px-4">
+        <div class="container mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl orbitron neon-pink font-bold mb-4">UPCOMING MERGERS</h2>
+                <p class="max-w-2xl mx-auto text-gray-300">Join our exclusive industry summits designed to connect leaders and innovate together</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+                <!-- Medical Health Summit -->
+                <div class="event-card rounded-lg p-6">
+                    <div class="flex flex-col h-full">
+                        <div class="mb-4">
+                            <span class="inline-block px-3 py-1 rounded-full text-xs neon-blue border border-blue-400 mb-3">UPCOMING</span>
+                            <h3 class="text-2xl font-bold mb-2">Medical Health Summit</h3>
+                            <p class="text-gray-300 mb-4">Connect with healthcare leaders and explore innovative medical solutions.</p>
+                        </div>
+                        <div class="mt-auto">
+                            <div class="flex flex-wrap gap-4 mb-4">
+                                <div class="flex items-center">
+                                    <i class="far fa-calendar-alt mr-2 text-blue-400"></i>
+                                    <span>November 8th, 2024</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="far fa-clock mr-2 text-blue-400"></i>
+                                    <span>9am-2pm Or 3pm-8pm</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-map-marker-alt mr-2 text-blue-400"></i>
+                                    <span>8710 Link Rd, Fountain, CO</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-ticket-alt mr-2 text-blue-400"></i>
+                                    <span>$97</span>
+                                </div>
+                            </div>
+                            <button class="neon-button w-full py-3 rounded-md rsvp-btn" data-event="Medical Health Summit">RSVP NOW</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Law Summit -->
+                <div class="event-card rounded-lg p-6">
+                    <div class="flex flex-col h-full">
+                        <div class="mb-4">
+                            <span class="inline-block px-3 py-1 rounded-full text-xs neon-green border border-green-400 mb-3">FEATURED</span>
+                            <h3 class="text-2xl font-bold mb-2">Law Summit</h3>
+                            <p class="text-gray-300 mb-4">Join legal professionals to discuss emerging trends and opportunities in the legal industry.</p>
+                        </div>
+                        <div class="mt-auto">
+                            <div class="flex flex-wrap gap-4 mb-4">
+                                <div class="flex items-center">
+                                    <i class="far fa-calendar-alt mr-2 text-blue-400"></i>
+                                    <span>February 7th, 2026</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="far fa-clock mr-2 text-blue-400"></i>
+                                    <span>9am-2pm Or 3pm-8pm</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-map-marker-alt mr-2 text-blue-400"></i>
+                                    <span>8710 Link Rd, Fountain, CO</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-ticket-alt mr-2 text-blue-400"></i>
+                                    <span>$97</span>
+                                </div>
+                            </div>
+                            <button class="neon-button w-full py-3 rounded-md rsvp-btn" data-event="Law Summit">RSVP NOW</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tech Summit -->
+                <div class="event-card rounded-lg p-6">
+                    <div class="flex flex-col h-full">
+                        <div class="mb-4">
+                            <span class="inline-block px-3 py-1 rounded-full text-xs neon-purple border border-purple-400 mb-3">EXCLUSIVE</span>
+                            <h3 class="text-2xl font-bold mb-2">Tech Summit</h3>
+                            <p class="text-gray-300 mb-4">Explore cutting-edge technology and network with industry innovators.</p>
+                        </div>
+                        <div class="mt-auto">
+                            <div class="flex flex-wrap gap-4 mb-4">
+                                <div class="flex items-center">
+                                    <i class="far fa-calendar-alt mr-2 text-blue-400"></i>
+                                    <span>May 9th, 2026</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="far fa-clock mr-2 text-blue-400"></i>
+                                    <span>9am-2pm Or 3pm-8pm</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-map-marker-alt mr-2 text-blue-400"></i>
+                                    <span>8710 Link Rd, Fountain, CO</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-ticket-alt mr-2 text-blue-400"></i>
+                                    <span>$97</span>
+                                </div>
+                            </div>
+                            <button class="neon-button w-full py-3 rounded-md rsvp-btn" data-event="Tech Summit">RSVP NOW</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Creative/Vendor Summit -->
+                <div class="event-card rounded-lg p-6">
+                    <div class="flex flex-col h-full">
+                        <div class="mb-4">
+                            <span class="inline-block px-3 py-1 rounded-full text-xs neon-blue border border-blue-400 mb-3">CREATIVE</span>
+                            <h3 class="text-2xl font-bold mb-2">Creative/Vendor Summit</h3>
+                            <p class="text-gray-300 mb-4">Connect with creative professionals and vendors to explore collaborative opportunities.</p>
+                        </div>
+                        <div class="mt-auto">
+                            <div class="flex flex-wrap gap-4 mb-4">
+                                <div class="flex items-center">
+                                    <i class="far fa-calendar-alt mr-2 text-blue-400"></i>
+                                    <span>August 8th, 2026</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="far fa-clock mr-2 text-blue-400"></i>
+                                    <span>9am-2pm Or 3pm-8pm</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-map-marker-alt mr-2 text-blue-400"></i>
+                                    <span>8710 Link Rd, Fountain, CO</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-ticket-alt mr-2 text-blue-400"></i>
+                                    <span>$97</span>
+                                </div>
+                            </div>
+                            <button class="neon-button w-full py-3 rounded-md rsvp-btn" data-event="Creative/Vendor Summit">RSVP NOW</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upcoming Conferences Section -->
+    <section id="conferences" class="py-20 px-4 relative">
+        <div class="absolute inset-0 z-0">
+            <svg class="w-full h-full opacity-10" viewBox="0 0 100 100" preserveAspectRatio="none">
+                <defs>
+                    <radialGradient id="rgrad2" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+                        <stop offset="0%" style="stop-color:#ff00ff;stop-opacity:0.2"></stop>
+                        <stop offset="100%" style="stop-color:#000;stop-opacity:0"></stop>
+                    </radialGradient>
+                </defs>
+                <rect x="0" y="0" width="100" height="100" fill="url(#rgrad2)">
+                    <animate attributeName="opacity" values="0.1;0.3;0.1" dur="5s" repeatCount="indefinite"></animate>
+                </rect>
+            </svg>
+        </div>
+        
+        <div class="container mx-auto relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl orbitron neon-green font-bold mb-4">UPCOMING CONFERENCES</h2>
+                <p class="max-w-2xl mx-auto text-gray-300">Stay tuned for our exclusive conference lineup</p>
+            </div>
+            
+            <div class="coming-soon rounded-lg p-10 text-center">
+                <div class="w-24 h-24 mx-auto mb-6 rounded-full flex items-center justify-center border-2 border-green-400" style="box-shadow: 0 0 15px rgba(0, 255, 102, 0.5);">
+                    <i class="fas fa-calendar-alt text-4xl neon-green"></i>
+                </div>
+                <h3 class="text-2xl md:text-3xl orbitron neon-green mb-4">COMING SOON</h3>
+                <p class="text-lg max-w-2xl mx-auto mb-8">Our team is curating an exceptional lineup of conferences designed to transform your business. Sign up to be notified when registration opens.</p>
+                <button class="neon-button px-8 py-3 rounded-md" id="notify-btn">GET NOTIFIED</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Training Modules Section -->
+    <section id="training" class="py-20 px-4">
+        <div class="container mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl orbitron neon-purple font-bold mb-4">TRAINING MODULES</h2>
+                <p class="max-w-2xl mx-auto text-gray-300">Exclusive training content to elevate your business to 7-figures</p>
+            </div>
+            
+            <div class="coming-soon rounded-lg p-10 text-center">
+                <div class="w-24 h-24 mx-auto mb-6 rounded-full flex items-center justify-center border-2 border-purple-400" style="box-shadow: 0 0 15px rgba(191, 0, 255, 0.5);">
+                    <i class="fas fa-graduation-cap text-4xl neon-purple"></i>
+                </div>
+                <h3 class="text-2xl md:text-3xl orbitron neon-purple mb-4">MODULES LAUNCHING SOON</h3>
+                <p class="text-lg max-w-2xl mx-auto mb-8">Our expert-led training modules are being finalized. Be the first to access these exclusive resources designed for serious entrepreneurs.</p>
+                <button class="neon-button px-8 py-3 rounded-md" id="waitlist-btn">JOIN WAITLIST</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Past Events Section -->
+    <section id="past-events" class="py-20 px-4 relative">
+        <div class="absolute inset-0 z-0">
+            <svg class="w-full h-full opacity-10" viewBox="0 0 100 100" preserveAspectRatio="none">
+                <defs>
+                    <radialGradient id="rgrad3" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+                        <stop offset="0%" style="stop-color:#00f3ff;stop-opacity:0.2"></stop>
+                        <stop offset="100%" style="stop-color:#000;stop-opacity:0"></stop>
+                    </radialGradient>
+                </defs>
+                <rect x="0" y="0" width="100" height="100" fill="url(#rgrad3)">
+                    <animate attributeName="opacity" values="0.1;0.2;0.1" dur="6s" repeatCount="indefinite"></animate>
+                </rect>
+            </svg>
+        </div>
+        
+        <div class="container mx-auto relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl orbitron neon-blue font-bold mb-4">PAST EVENTS</h2>
+                <p class="max-w-2xl mx-auto text-gray-300">Highlights from our previous exclusive gatherings</p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="video-container rounded-lg overflow-hidden">
+                    <div class="aspect-w-16 aspect-h-9 bg-gray-900 flex items-center justify-center">
+                        <div class="text-center p-10">
+                            <div class="w-20 h-20 mx-auto mb-6 rounded-full flex items-center justify-center border-2 border-blue-400" style="box-shadow: 0 0 15px rgba(0, 243, 255, 0.5);">
+                                <i class="fas fa-play text-2xl neon-blue"></i>
+                            </div>
+                            <h3 class="text-xl orbitron neon-blue mb-4">EVENT HIGHLIGHTS</h3>
+                            <p class="text-gray-300 mb-4">Click to watch highlights from our last summit</p>
+                            <button id="play-video" class="neon-button px-6 py-2 rounded-md">PLAY REEL</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-8 text-center">
+                    <p class="text-gray-300">Experience the energy and connections made at our exclusive events. The 7-Figure Shift brings together industry leaders for transformative experiences.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-10 px-4 border-t border-blue-900">
+        <div class="container mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <h2 class="text-2xl orbitron neon-blue font-bold">THE 7-FIGURE SHIFT</h2>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-linkedin text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-twitter text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-facebook text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-800 text-center text-gray-400">
+                <p>© 2024 The 7-Figure Shift. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Notification Modal -->
+    <div id="notification-modal" class="fixed inset-0 z-50 hidden modal">
+        <div class="min-h-screen flex items-center justify-center p-4">
+            <div class="modal-content max-w-md w-full rounded-lg p-8 relative">
+                <button class="close-notification absolute top-4 right-4 text-gray-400 hover:text-white">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+                <h3 class="text-2xl orbitron neon-green font-bold mb-6">Get Notified</h3>
+                <form id="notification-form" class="space-y-4">
+                    <div>
+                        <label class="block text-gray-300 mb-2">Full Name</label>
+                        <input type="text" class="w-full bg-black border-2 border-green-400 rounded-md px-4 py-2 focus:outline-none focus:border-green-500 text-white" required="">
+                    </div>
+                    <div>
+                        <label class="block text-gray-300 mb-2">Email</label>
+                        <input type="email" class="w-full bg-black border-2 border-green-400 rounded-md px-4 py-2 focus:outline-none focus:border-green-500 text-white" required="">
+                    </div>
+                    <div class="pt-4">
+                        <button type="submit" class="neon-button w-full py-3 rounded-md">NOTIFY ME</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Video Modal -->
+    <div id="video-modal" class="fixed inset-0 z-50 hidden modal">
+        <div class="min-h-screen flex items-center justify-center p-4">
+            <div class="modal-content max-w-4xl w-full rounded-lg p-4 relative">
+                <button id="close-video" class="absolute top-4 right-4 text-gray-400 hover:text-white z-10">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+                <div class="aspect-w-16 aspect-h-9 bg-black rounded-lg">
+                    <div class="flex items-center justify-center">
+                        <div class="text-center">
+                            <div class="w-20 h-20 mx-auto rounded-full flex items-center justify-center border-2 border-blue-400 animate-pulse" style="box-shadow: 0 0 15px rgba(0, 243, 255, 0.5);">
+                                <i class="fas fa-video text-2xl neon-blue"></i>
+                            </div>
+                            <p class="mt-4 text-gray-300">Demo Video Placeholder</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mobile menu functionality
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const closeMenuButton = document.getElementById('close-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.remove('translate-x-full');
+        });
+        
+        closeMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.add('translate-x-full');
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('translate-x-full');
+            });
+        });
+        
+        // Form submission
+        document.getElementById('rsvp-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your RSVP! A confirmation has been sent to your email.');
+            rsvpModal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        });
+        
+        // Notification Modal functionality
+        const notifyBtn = document.getElementById('notify-btn');
+        const waitlistBtn = document.getElementById('waitlist-btn');
+        const notificationModal = document.getElementById('notification-modal');
+        const closeNotificationButtons = document.querySelectorAll('.close-notification');
+        
+        notifyBtn.addEventListener('click', () => {
+            notificationModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        });
+        
+        waitlistBtn.addEventListener('click', () => {
+            notificationModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        });
+        
+        closeNotificationButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                notificationModal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            });
+        });
+        
+        // Notification form submission
+        document.getElementById('notification-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for signing up! You will be notified when new events are available.');
+            notificationModal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        });
+        
+        // Video Modal functionality
+        const playVideoBtn = document.getElementById('play-video');
+        const videoModal = document.getElementById('video-modal');
+        const closeVideoBtn = document.getElementById('close-video');
+        
+        playVideoBtn.addEventListener('click', () => {
+            videoModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        });
+        
+        closeVideoBtn.addEventListener('click', () => {
+            videoModal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        });
+        
+        // Close modals when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === rsvpModal) {
+                rsvpModal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
+            if (e.target === notificationModal) {
+                notificationModal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
+            if (e.target === videoModal) {
+                videoModal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    const navHeight = document.querySelector('nav').offsetHeight;
+                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+<!-- Modal Overlay -->
+  <div id="formModal" class="fixed inset-0 bg-black bg-opacity-90 z-50 hidden items-center justify-center p-4">
+    <div class="relative bg-gray-900 text-white rounded-lg shadow-lg w-full max-w-4xl overflow-y-auto max-h-full p-6">
+      <button id="closeModal" class="absolute top-4 right-4 text-white text-2xl">
+        <i class="fas fa-times"></i>
+      </button>
+      <iframe src="form.html" class="w-full h-[90vh] rounded-md border border-blue-400"></iframe>
+    </div>
+  </div>
+
+  <!-- Add this just before the closing </body> tag -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const modal = document.getElementById("formModal");
+      const closeModal = document.getElementById("closeModal");
+
+      document.querySelectorAll(".rsvp-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          modal.classList.remove("hidden");
+          modal.classList.add("flex");
+        });
+      });
+
+      closeModal.addEventListener("click", () => {
+        modal.classList.add("hidden");
+        modal.classList.remove("flex");
+      });
+    });
+  </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'946a3197c3471f4e',t:'MTc0ODM5Nzk5Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><iframe height="1" width="1" style="position: absolute; top: 0px; left: 0px; border: none; visibility: hidden;"></iframe>
+</body>
+</html>
