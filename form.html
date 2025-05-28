@@ -218,11 +218,6 @@
                     </button>
 </div>
 </form>
-<!-- Admin Access -->
-<div class="mt-16 pt-8 border-t border-gray-800">
-
-
-
 </div>
 </div>
 <!-- Success Modal -->
@@ -282,70 +277,6 @@
         document.getElementById('closeModalBtn').addEventListener('click', function() {
             document.getElementById('successModal').classList.add('hidden');
         });
-        
-        // Admin access button
-        document.getElementById('adminAccessBtn').addEventListener('click', function() {
-            const loginPanel = document.getElementById('adminLoginPanel');
-            loginPanel.classList.toggle('hidden');
-        });
-        
-        // Admin login button
-        document.getElementById('adminLoginBtn').addEventListener('click', function() {
-            const passcode = document.getElementById('adminPasscode').value;
-            if (passcode === '2289') {
-                document.getElementById('adminPanel').classList.add('open');
-                renderSubmissions();
-            } else {
-                alert('Incorrect passcode');
-            }
-        });
-        
-        // Render submissions in admin panel
-        function renderSubmissions() {
-            const submissionsList = document.getElementById('submissionsList');
-            submissionsList.innerHTML = '';
-            
-            if (submissions.length === 0) {
-                submissionsList.innerHTML = '<p class="text-gray-400">No submissions yet.</p>';
-                return;
-            }
-            
-            submissions.forEach(sub => {
-                const submissionEl = document.createElement('div');
-                submissionEl.className = 'p-4 bg-black bg-opacity-50 rounded-lg submission-item';
-                
-                submissionEl.innerHTML = `
-                    <div class="flex justify-between">
-                        <h4 class="font-bold">${sub.name}</h4>
-                        <span class="text-xs text-gray-400">${sub.date}</span>
-                    </div>
-                    <p class="text-sm text-blue-300">${sub.email || 'No email provided'}</p>
-                    <p class="text-sm">${sub.business} - ${sub.industry}</p>
-                    <div class="mt-2">
-                        <p class="text-xs font-semibold text-gray-400">Selected Events:</p>
-                        <ul class="ml-4 text-sm">
-                            ${sub.events.map(event => `<li>• ${event}</li>`).join('')}
-                        </ul>
-                    </div>
-                    <p class="mt-2 text-sm"><span class="text-gray-400">Tickets:</span> ${sub.ticketQuantity}</p>
-                    <button class="delete-btn mt-2 text-xs text-red-400 hover:text-red-300" data-id="${sub.id}">
-                        Delete submission
-                    </button>
-                `;
-                
-                submissionsList.appendChild(submissionEl);
-            });
-            
-            // Add delete functionality
-            document.querySelectorAll('.delete-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const id = parseInt(this.getAttribute('data-id'));
-                    submissions = submissions.filter(sub => sub.id !== id);
-                    localStorage.setItem('eventSubmissions', JSON.stringify(submissions));
-                    renderSubmissions();
-                });
-            });
-        }
         
         // Add subtle animation to neon elements
         const neonElements = document.querySelectorAll('.neon-border, .neon-button');
