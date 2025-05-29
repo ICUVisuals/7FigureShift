@@ -833,10 +833,16 @@
       btn.addEventListener("click", () => {
         modal.classList.remove("hidden");
         modal.classList.add("flex");
+
+        // Scroll the modal content to the top
+        const modalContent = modal.querySelector(".overflow-y-auto");
+        if (modalContent) {
+          modalContent.scrollTop = 0;
+        }
       });
     });
 
-   // Close form modal
+    // Close form modal
     closeModal.addEventListener("click", () => {
       modal.classList.add("hidden");
       modal.classList.remove("flex");
@@ -847,7 +853,7 @@
       successModal.classList.add("hidden");
       successModal.classList.remove("flex");
 
-      // Also ensure the form modal is closed
+      // Also close form modal (in case it's still visible)
       modal.classList.add("hidden");
       modal.classList.remove("flex");
     });
