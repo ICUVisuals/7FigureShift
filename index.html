@@ -891,10 +891,17 @@
         }
       }).then(response => {
         if (response.ok) {
+          // Ensure form modal is hidden
           modal.classList.add("hidden");
           modal.classList.remove("flex");
-          successModal.classList.remove("hidden");
-          successModal.classList.add("flex");
+
+          // Show success modal
+          setTimeout(() => {
+            successModal.classList.remove("hidden");
+            successModal.classList.add("flex");
+          }, 300); // slight delay for smooth transition
+
+          // Reset the form
           form.reset();
         } else {
           alert("There was an error submitting your form.");
