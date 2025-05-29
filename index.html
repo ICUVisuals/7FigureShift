@@ -828,7 +828,7 @@
     const closeSuccess = document.getElementById("closeModalBtn");
     const form = document.getElementById("registrationForm");
 
-    // Show form modal on RSVP click
+    // RSVP modal trigger
     document.querySelectorAll(".rsvp-btn").forEach(btn => {
       btn.addEventListener("click", () => {
         modal.classList.remove("hidden");
@@ -836,13 +836,23 @@
       });
     });
 
-    // Hide form modal
+   // Close form modal
     closeModal.addEventListener("click", () => {
       modal.classList.add("hidden");
       modal.classList.remove("flex");
     });
 
-    // Handle form submission with JS
+    // Close success modal
+    closeSuccess.addEventListener("click", () => {
+      successModal.classList.add("hidden");
+      successModal.classList.remove("flex");
+
+      // Also ensure the form modal is closed
+      modal.classList.add("hidden");
+      modal.classList.remove("flex");
+    });
+
+    // Handle form submission
     form.addEventListener("submit", function (e) {
       e.preventDefault();
 
@@ -856,14 +866,11 @@
         }
       }).then(response => {
         if (response.ok) {
-
-          // Show success modal
           setTimeout(() => {
             successModal.classList.remove("hidden");
             successModal.classList.add("flex");
-          }, 300); // slight delay for smooth transition
+          }, 200);
 
-          // Reset the form
           form.reset();
         } else {
           alert("There was an error submitting your form.");
@@ -872,16 +879,6 @@
         console.error(error);
         alert("There was an error submitting your form.");
       });
-    });
-
-    // Close success modal
-    closeSuccess.addEventListener("click", () => {
-      successModal.classList.add("hidden");
-      successModal.classList.remove("flex");
-
-      // Also ensure the form modal is closed
-      modal.classList.add("hidden");
-      modal.classList.remove("flex");
     });
   });
 </script>
