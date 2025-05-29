@@ -878,6 +878,10 @@
     closeSuccess.addEventListener("click", () => {
       successModal.classList.add("hidden");
       successModal.classList.remove("flex");
+
+      // Also ensure the form modal is closed
+      modal.classList.add("hidden");
+      modal.classList.remove("flex");
     });
   });
 </script>
