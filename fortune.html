@@ -4,6 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>7FS Fortune Teller</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600;700&display=swap');
         
@@ -529,10 +530,10 @@
 <body class="grid-pattern min-h-screen">
     <!-- Navigation -->
     <nav class="fixed w-full z-50 bg-black bg-opacity-80 backdrop-blur-md border-b border-blue-400 px-4 py-3">
-        <div class="container mx-auto flex justify-between items-center">
-            <div class="flex items-center">
-                <h1 class="text-2xl md:text-3xl orbitron text-white neon-blue font-bold">THE 7-FIGURE SHIFT</h1>
-            </div>
+         <div class="container mx-auto flex justify-between items-center">
+            <a href="index.html#" class="flex items-center">
+                <h1 class="text-2xl md:text-3xl orbitron text-white neon-blue font-bold">7FS</h1>
+            </a>
             <div class="hidden md:flex space-x-6">
                 <a href="index.html#" class="hover:text-blue-400 transition-colors">Home</a>
                 <a href="index.html#mergers" class="hover:text-blue-400 transition-colors">Mergers</a>
@@ -576,7 +577,7 @@
             <p class="text-cyan-300 text-center mb-6">Enter your email to discover what the universe has in store for your success journey</p>
             
             <div class="mb-3">
-                <input type="email" name="email" id="email" required placeholder="Enter your email address" class="w-full p-4 mb-9 rounded-lg bg-gray-800 text-white border border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-600">
+                <input type="email" name="email" id="email" required placeholder="Enter your email" class="w-full p-4 mb-9 rounded-lg bg-gray-800 text-white border border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-600">
             </div>
             
             <button id="submitEmail" class="w-full py-4 px-6 rounded-lg bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold text-lg neon-button">
@@ -650,29 +651,30 @@
     <footer class="py-10 px-4 border-t border-blue-900">
         <div class="container mx-auto">
             <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-6 md:mb-0">
-                    <h2 class="text-2xl orbitron text-white neon-blue font-bold">THE 7-FIGURE SHIFT</h2>
-                </div>
+                <a href="index.html" class="mb-6 md:mb-0">
+                    <h2 class="text-2xl orbitron text-white neon-blue font-bold">THE 7 FIGURE SHIFT</h2>
+                </a>
                 <div class="flex space-x-6">
-                    <a href="" class="text-gray-400 hover:text-white transition-colors">
+                    <a href="" class="text-white hover:text-blue-400 transition-colors">
                         <i class="fab fa-instagram text-xl"></i>
                     </a>
-                    <a href="" class="text-gray-400 hover:text-white transition-colors">
+                    <a href="" class="text-white hover:text-blue-400 transition-colors">
                         <i class="fab fa-linkedin text-xl"></i>
                     </a>
-                    <a href="" class="text-gray-400 hover:text-white transition-colors">
+                    <a href="" class="text-white hover:text-blue-400 transition-colors">
                         <i class="fab fa-twitter text-xl"></i>
                     </a>
-                    <a href="" class="text-gray-400 hover:text-white transition-colors">
+                    <a href="" class="text-white hover:text-blue-400 transition-colors">
                         <i class="fab fa-facebook text-xl"></i>
                     </a>
                 </div>
             </div>
             <div class="mt-8 pt-8 border-t border-gray-800 text-center text-gray-400">
-                <p>© 2025 The 7-Figure Shift. All Rights Reserved.</p>
+                <p>© 2025 The 7 Figure Shift. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
+
 
     <script>
         // Fortune list
@@ -1125,6 +1127,26 @@
                 const fortune = getRandomFortune();
                 startCrystalBallAnimation(fortune);
             }
+        });
+
+        // Mobile menu functionality
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const closeMenuButton = document.getElementById('close-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.remove('translate-x-full');
+        });
+        
+        closeMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.add('translate-x-full');
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('translate-x-full');
+            });
         });
     </script>
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9470a869c15ae677',t:'MTc0ODQ2NTc3OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><iframe height="1" width="1" style="position: absolute; top: 0px; left: 0px; border: none; visibility: hidden;"></iframe>
