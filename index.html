@@ -535,7 +535,6 @@
                 <p class="text-lg max-w-2xl mx-auto mb-8">Our team is curating an exceptional lineup of conferences designed to transform your business. Sign up to be notified when registration opens.</p>
                 <form id="conferencecomingSoonForm" action="https://formsubmit.co/7fsllc@gmail.com" method="POST" class="max-w-md mx-auto" onsubmit="handleSubmit(event)">
                     <input type="hidden" name="_captcha" value="false">
-                    <input type="hidden" name="_next" value="">
                     <input type="hidden" name="_subject" value="New 7FS GET NOTIFIED ABOUT UPCOMING CONFERENCES Email Lead!">
                     <input type="hidden" name="_template" value="table">
                         <div class="flex flex-col md:flex-row gap-4">
@@ -565,9 +564,8 @@
                 <h3 class="text-2xl md:text-3xl text-white orbitron neon-purple mb-4">MODULES LAUNCHING SOON</h3>
                 <p class="text-lg max-w-2xl mx-auto mb-8">Our expert-led training modules are being finalized. Be the first to access these exclusive resources designed for serious entrepreneurs.</p>
                 
-                <form action="https://formsubmit.co/7fsllc@gmail.com" method="POST" class="max-w-md mx-auto" onsubmit="handleSubmit(event)">
+                <form id="trainingwaitlistForm" action="https://formsubmit.co/7fsllc@gmail.com" method="POST" class="max-w-md mx-auto" onsubmit="handleSubmit(event)">
                 <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="_next" value="">
                 <input type="hidden" name="_subject" value="New 7FS TRAINING MODULE WAITLIST Email Lead!">
                 <input type="hidden" name="_template" value="table">
                 <div class="flex flex-col md:flex-row gap-4">
@@ -754,6 +752,25 @@
         alert("There was an error submitting your email. Please try again.");
         });
     }
+
+    // Form submission- Training Modules Coming Soon Waitlist Email
+        function handleTrainingSubmit(event) {
+            event.preventDefault();
+            const form = event.target;
+
+            fetch(form.action, {
+            method: form.method,
+            body: new FormData(form),
+            headers: { 'Accept': 'application/json' }
+            }).then(() => {
+            form.reset();
+            form.style.display = 'none';
+            document.getElementById('trainingSuccess').classList.remove('hidden');
+            }).catch(() => {
+            alert("There was an error submitting your email. Please try again.");
+            });
+        }
+
 
         // Notification Modal functionality
         const notifyBtn = document.getElementById('notify-btn');
