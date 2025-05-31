@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7FS Fortune Teller</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600;700&display=swap');
+        
+        body {
+            background-color: #000;
+            font-family: 'Montserrat', sans-serif;
+            color: #fff;
+            overflow-x: hidden;
+        }
+        
+        .neon-blue {
+            color: #00f3ff;
+            text-shadow: 0 0 5px #00f3ff, 0 0 10px #00f3ff, 0 0 20px #00f3ff, 0 0 30px #00f3ff;
+            animation: pulsate 2s infinite alternate;
+        }
+        
+        .neon-pink {
+            color: #ff00ff;
+            text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+        }
+        
+        .neon-green {
+            color: #00ff66;
+            text-shadow: 0 0 5px #00ff66, 0 0 10px #00ff66, 0 0 20px #00ff66;
+        }
+        
+        .neon-purple {
+            color: #bf00ff;
+            text-shadow: 0 0 5px #bf00ff, 0 0 10px #bf00ff, 0 0 20px #bf00ff;
+        }
+        
+        .neon-box {
+            border: 2px solid #00f3ff;
+            box-shadow: 0 0 5px #00f3ff, 0 0 10px #00f3ff, inset 0 0 5px #00f3ff;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .neon-box:hover {
+            box-shadow: 0 0 10px #00f3ff, 0 0 20px #00f3ff, inset 0 0 10px #00f3ff;
+        }
+        
+        .neon-button {
+            background-color: transparent;
+            border: 2px solid #ff00ff;
+            color: #ff00ff;
+            text-shadow: 0 0 5px #ff00ff;
+            box-shadow: 0 0 5px #ff00ff, inset 0 0 5px #ff00ff;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+        
+        .neon-border {
+            box-shadow: 0 0 5px #ff00dd, 0 0 10px #ff00dd, 0 0 15px #ff00dd;
+            border: 1px solid rgba(255, 0, 221, 0.7);
+        }
+        
+        .neon-text {
+            text-shadow: 0 0 5px #00eeff, 0 0 10px #00eeff, 0 0 15px #00eeff;
+            color: #fff;
+        }
+
+        .neon-button:hover {
+            background-color: rgba(255, 0, 255, 0.2);
+            box-shadow: 0 0 10px #ff00ff, inset 0 0 10px #ff00ff;
+            transform: translateY(-2px);
+        }
+        
+        input[type="text"], input[type="email"], textarea {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+        
+        input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
+            border-color: #00eeff;
+            box-shadow: 0 0 5px #00eeff;
+        }
+        
+        input[type="checkbox"] {
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        input[type="checkbox"]:checked {
+            background-color: rgba(0, 238, 255, 0.7);
+            border-color: #00eeff;
+        }
+        
+        input[type="checkbox"]:checked::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 14px;
+        }
+        
+        .orbitron {
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        .grid-pattern {
+            background-image: linear-gradient(rgba(0, 243, 255, 0.1) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(0, 243, 255, 0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        
+        .event-option {
+            transition: all 0.3s ease;
+        }
+        
+        .event-option:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+        
+        .submission-item {
+            border-left: 3px solid #00eeff;
+        }
+        
+        .event-card {
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .event-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.5);
+        }
+        
+        @keyframes pulsate {
+            0% {
+                text-shadow: 0 0 5px #00f3ff, 0 0 10px #00f3ff, 0 0 20px #00f3ff;
+            }
+            100% {
+                text-shadow: 0 0 10px #00f3ff, 0 0 20px #00f3ff, 0 0 30px #00f3ff, 0 0 40px #00f3ff;
+            }
+        }
+        
+        .video-container {
+            position: relative;
+            overflow: hidden;
+            border: 2px solid #00f3ff;
+            box-shadow: 0 0 10px #00f3ff;
+        }
+        
+        .coming-soon {
+            background: linear-gradient(45deg, #000, #111);
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.2);
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #000;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #00f3ff;
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00c4cc;
+        }
+        
+        .modal {
+            backdrop-filter: blur(10px);
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+        
+        .modal-content {
+            background: linear-gradient(135deg, #000, #111);
+            border: 2px solid #00f3ff;
+            box-shadow: 0 0 20px #00f3ff;
+        }
+        
+        .neon-text {
+            font-family: 'Orbitron', sans-serif;
+            text-shadow: 
+                0 0 5px #fff,
+                0 0 10px #fff,
+                0 0 15px #ff00de,
+                0 0 20px #ff00de,
+                0 0 25px #ff00de;
+            animation: neon-pulse 2s infinite alternate;
+        }
+        
+        .neon-border {
+            box-shadow: 
+                0 0 5px #fff,
+                0 0 10px #fff,
+                0 0 15px #00f7ff,
+                0 0 20px #00f7ff;
+            animation: neon-border-pulse 2s infinite alternate;
+        }
+        
+        .neon-button {
+            box-shadow: 
+                0 0 5px #fff,
+                0 0 10px #fff,
+                0 0 15px #ff00de,
+                0 0 20px #ff00de;
+            transition: all 0.3s ease;
+        }
+        
+        .neon-button:hover {
+            box-shadow: 
+                0 0 10px #fff,
+                0 0 20px #fff,
+                0 0 30px #ff00de,
+                0 0 40px #ff00de;
+            transform: translateY(-3px);
+        }
+        
+        @keyframes neon-pulse {
+            from {
+                text-shadow: 
+                    0 0 5px #fff,
+                    0 0 10px #fff,
+                    0 0 15px #ff00de,
+                    0 0 20px #ff00de,
+                    0 0 25px #ff00de;
+            }
+            to {
+                text-shadow: 
+                    0 0 5px #fff,
+                    0 0 10px #fff,
+                    0 0 15px #ff00de,
+                    0 0 20px #ff00de,
+                    0 0 30px #ff00de,
+                    0 0 40px #ff00de;
+            }
+        }
+        
+        @keyframes neon-border-pulse {
+            from {
+                box-shadow: 
+                    0 0 5px #fff,
+                    0 0 10px #fff,
+                    0 0 15px #00f7ff,
+                    0 0 20px #00f7ff;
+            }
+            to {
+                box-shadow: 
+                    0 0 5px #fff,
+                    0 0 10px #fff,
+                    0 0 15px #00f7ff,
+                    0 0 20px #00f7ff,
+                    0 0 30px #00f7ff;
+            }
+        }
+        
+        .card {
+            perspective: 1000px;
+            transition: transform 0.5s;
+        }
+        
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+        
+        .card.flipped .card-inner {
+            transform: rotateY(180deg);
+        }
+        
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 1rem;
+        }
+        
+        .card-back {
+            transform: rotateY(180deg);
+        }
+        
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #f00;
+            opacity: 0;
+        }
+        
+        .money {
+            position: absolute;
+            font-size: 24px;
+            opacity: 0;
+        }
+        
+        .firework {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            opacity: 0;
+        }
+        
+        .email-form {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .fortune-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        /* Crystal Ball Animation */
+        .crystal-ball-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(15, 15, 26, 0.9);
+            z-index: 1000;
+        }
+        
+        .crystal-ball-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin-bottom: 40px;
+        }
+        
+        .crystal-ball {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, 
+                rgba(255, 255, 255, 0.8) 0%, 
+                rgba(200, 200, 255, 0.5) 20%, 
+                rgba(100, 100, 200, 0.3) 60%, 
+                rgba(50, 50, 150, 0.4) 100%);
+            box-shadow: 
+                0 0 20px rgba(255, 255, 255, 0.8),
+                0 0 40px rgba(0, 247, 255, 0.6),
+                0 0 60px rgba(255, 0, 222, 0.4),
+                inset 0 0 60px rgba(255, 255, 255, 0.2);
+            overflow: hidden;
+        }
+        
+        .crystal-base {
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 60px;
+            background: linear-gradient(to bottom, #4b4b6d, #2a2a3d);
+            border-radius: 50% / 30%;
+            box-shadow: 
+                0 10px 20px rgba(0, 0, 0, 0.3),
+                0 0 15px rgba(0, 247, 255, 0.5);
+        }
+        
+        .universe {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            overflow: hidden;
+            opacity: 0;
+        }
+        
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, #1a1a3a, #0f0f1a);
+        }
+        
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background-color: white;
+            border-radius: 50%;
+        }
+        
+        .nebula {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(10px);
+            opacity: 0.5;
+            mix-blend-mode: screen;
+        }
+        
+        .swirl {
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            background-image: 
+                radial-gradient(circle at center, transparent 30%, rgba(0, 0, 0, 0.5) 70%),
+                conic-gradient(
+                    from 0deg,
+                    rgba(255, 0, 222, 0.2),
+                    rgba(0, 247, 255, 0.2),
+                    rgba(255, 215, 0, 0.2),
+                    rgba(138, 43, 226, 0.2),
+                    rgba(255, 0, 222, 0.2)
+                );
+            border-radius: 50%;
+            animation: rotate 3s linear infinite;
+        }
+        
+        .symbol-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+        }
+        
+        .fortune-symbol {
+            font-size: 80px;
+            color: white;
+            text-shadow: 
+                0 0 10px white,
+                0 0 20px #ff00de,
+                0 0 30px #00f7ff;
+            transform: scale(0);
+        }
+        
+        .loading-text {
+            color: #00f7ff;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        
+        .loading-dots:after {
+            content: '.';
+            animation: dots 1.5s steps(5, end) infinite;
+        }
+        
+        @keyframes dots {
+            0%, 20% { content: '.'; }
+            40% { content: '..'; }
+            60% { content: '...'; }
+            80%, 100% { content: ''; }
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        
+        @keyframes fadeOut {
+            0% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+        
+        @keyframes symbolReveal {
+            0% { transform: scale(0); opacity: 0; }
+            70% { transform: scale(1.2); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        .sparkle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background-color: white;
+            border-radius: 50%;
+            opacity: 0;
+        }
+        
+        .glow {
+            filter: drop-shadow(0 0 5px #ff00de) drop-shadow(0 0 10px #ff00de);
+            animation: glow-pulse 2s infinite alternate;
+        }
+        
+        @keyframes glow-pulse {
+            from { filter: drop-shadow(0 0 5px #ff00de) drop-shadow(0 0 10px #ff00de); }
+            to { filter: drop-shadow(0 0 10px #ff00de) drop-shadow(0 0 15px #ff00de); }
+        }
+    </style>
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.16 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.container{width:100%}@media (min-width: 640px){.container{max-width:640px}}@media (min-width: 768px){.container{max-width:768px}}@media (min-width: 1024px){.container{max-width:1024px}}@media (min-width: 1280px){.container{max-width:1280px}}@media (min-width: 1536px){.container{max-width:1536px}}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.inset-0{inset:0px}.left-0{left:0px}.right-4{right:1rem}.top-0{top:0px}.top-4{top:1rem}.z-0{z-index:0}.z-10{z-index:10}.z-40{z-index:40}.z-50{z-index:50}.mx-auto{margin-left:auto;margin-right:auto}.mb-10{margin-bottom:2.5rem}.mb-16{margin-bottom:4rem}.mb-2{margin-bottom:0.5rem}.mb-3{margin-bottom:0.75rem}.mb-4{margin-bottom:1rem}.mb-6{margin-bottom:1.5rem}.mb-8{margin-bottom:2rem}.mr-2{margin-right:0.5rem}.mt-16{margin-top:4rem}.mt-4{margin-top:1rem}.mt-8{margin-top:2rem}.mt-auto{margin-top:auto}.block{display:block}.inline-block{display:inline-block}.flex{display:flex}.grid{display:grid}.hidden{display:none}.h-20{height:5rem}.h-24{height:6rem}.h-full{height:100%}.h-screen{height:100vh}.min-h-screen{min-height:100vh}.w-20{width:5rem}.w-24{width:6rem}.w-full{width:100%}.max-w-2xl{max-width:42rem}.max-w-3xl{max-width:48rem}.max-w-4xl{max-width:56rem}.max-w-md{max-width:28rem}.translate-x-full{--tw-translate-x:100%;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.transform{transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}@keyframes pulse{50%{opacity:.5}}.animate-pulse{animation:pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite}.grid-cols-1{grid-template-columns:repeat(1, minmax(0, 1fr))}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-center{align-items:center}.justify-end{justify-content:flex-end}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-4{gap:1rem}.gap-8{gap:2rem}.space-x-6 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(1.5rem * var(--tw-space-x-reverse));margin-left:calc(1.5rem * calc(1 - var(--tw-space-x-reverse)))}.space-y-4 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem * var(--tw-space-y-reverse))}.space-y-8 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(2rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(2rem * var(--tw-space-y-reverse))}.overflow-hidden{overflow:hidden}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:0.5rem}.rounded-md{border-radius:0.375rem}.border{border-width:1px}.border-2{border-width:2px}.border-b{border-bottom-width:1px}.border-t{border-top-width:1px}.border-blue-400{--tw-border-opacity:1;border-color:rgb(96 165 250 / var(--tw-border-opacity, 1))}.border-blue-900{--tw-border-opacity:1;border-color:rgb(30 58 138 / var(--tw-border-opacity, 1))}.border-gray-800{--tw-border-opacity:1;border-color:rgb(31 41 55 / var(--tw-border-opacity, 1))}.border-green-400{--tw-border-opacity:1;border-color:rgb(74 222 128 / var(--tw-border-opacity, 1))}.border-purple-400{--tw-border-opacity:1;border-color:rgb(192 132 252 / var(--tw-border-opacity, 1))}.bg-black{--tw-bg-opacity:1;background-color:rgb(0 0 0 / var(--tw-bg-opacity, 1))}.bg-gray-900{--tw-bg-opacity:1;background-color:rgb(17 24 39 / var(--tw-bg-opacity, 1))}.bg-opacity-80{--tw-bg-opacity:0.8}.bg-opacity-95{--tw-bg-opacity:0.95}.p-10{padding:2.5rem}.p-4{padding:1rem}.p-6{padding:1.5rem}.p-8{padding:2rem}.px-3{padding-left:0.75rem;padding-right:0.75rem}.px-4{padding-left:1rem;padding-right:1rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.px-8{padding-left:2rem;padding-right:2rem}.py-1{padding-top:0.25rem;padding-bottom:0.25rem}.py-10{padding-top:2.5rem;padding-bottom:2.5rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-20{padding-top:5rem;padding-bottom:5rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.py-4{padding-top:1rem;padding-bottom:1rem}.pt-4{padding-top:1rem}.pt-8{padding-top:2rem}.text-center{text-align:center}.text-2xl{font-size:1.5rem;line-height:2rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-5xl{font-size:3rem;line-height:1}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-xs{font-size:0.75rem;line-height:1rem}.font-bold{font-weight:700}.text-blue-400{--tw-text-opacity:1;color:rgb(96 165 250 / var(--tw-text-opacity, 1))}.text-gray-300{--tw-text-opacity:1;color:rgb(209 213 219 / var(--tw-text-opacity, 1))}.text-gray-400{--tw-text-opacity:1;color:rgb(156 163 175 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.opacity-10{opacity:0.1}.opacity-20{opacity:0.2}.backdrop-blur-md{--tw-backdrop-blur:blur(12px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition-colors{transition-property:color, background-color, border-color, fill, stroke, -webkit-text-decoration-color;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, -webkit-text-decoration-color;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-transform{transition-property:transform;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.duration-300{transition-duration:300ms}.ease-in-out{transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1)}.hover\:text-blue-400:hover{--tw-text-opacity:1;color:rgb(96 165 250 / var(--tw-text-opacity, 1))}.hover\:text-white:hover{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.focus\:border-blue-500:focus{--tw-border-opacity:1;border-color:rgb(59 130 246 / var(--tw-border-opacity, 1))}.focus\:border-green-500:focus{--tw-border-opacity:1;border-color:rgb(34 197 94 / var(--tw-border-opacity, 1))}.focus\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}@media (min-width: 768px){.md\:mb-0{margin-bottom:0px}.md\:flex{display:flex}.md\:hidden{display:none}.md\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.md\:flex-row{flex-direction:row}.md\:text-2xl{font-size:1.5rem;line-height:2rem}.md\:text-3xl{font-size:1.875rem;line-height:2.25rem}.md\:text-4xl{font-size:2.25rem;line-height:2.5rem}.md\:text-7xl{font-size:4.5rem;line-height:1}}@media (min-width: 1024px){.lg\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.lg\:text-8xl{font-size:6rem;line-height:1}}</style></head>
+<body class="grid-pattern min-h-screen">
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-black bg-opacity-80 backdrop-blur-md border-b border-blue-400 px-4 py-3">
+         <div class="container mx-auto flex justify-between items-center">
+            <a href="index.html#" class="flex items-center">
+                <h1 class="text-2xl md:text-3xl orbitron text-white neon-blue font-bold">7FS</h1>
+            </a>
+            <div class="hidden md:flex space-x-6">
+                <a href="index.html#" class="hover:text-blue-400 transition-colors">Home</a>
+                <a href="index.html#mergers" class="hover:text-blue-400 transition-colors">Mergers</a>
+                <a href="index.html#conferences" class="hover:text-blue-400 transition-colors">Conferences</a>
+                <a href="index.html#training" class="hover:text-blue-400 transition-colors">Training</a>
+                <a href="index.html#past-events" class="hover:text-blue-400 transition-colors">Past Events</a>
+                <a href="fortune.html" class="hover:text-blue-400 transition-colors">Fortune</a>
+            </div>
+            <button class="md:hidden text-white text-2xl" id="mobile-menu-button">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+    
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-95 z-40 transform translate-x-full transition-transform duration-300 ease-in-out">
+        <div class="flex justify-end p-4">
+            <button id="close-menu" class="text-white text-2xl">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="flex flex-col items-center space-y-8 mt-16">
+            <a href="index.html#" class="text-xl hover:text-blue-400 transition-colors">Home</a>
+            <a href="index.html#mergers" class="text-xl hover:text-blue-400 transition-colors">Mergers</a>
+            <a href="index.html#conferences" class="text-xl hover:text-blue-400 transition-colors">Conferences</a>
+            <a href="index.html#training" class="text-xl hover:text-blue-400 transition-colors">Training</a>
+            <a href="index.html#past-events" class="text-xl hover:text-blue-400 transition-colors">Past Events</a>
+            <a href="fortune.html" class="text-xl hover:text-blue-400 transition-colors">Fortune</a>
+        </div>
+    </div>
+
+    <!-- Fortune Teller Game -->
+    <section id="game" class="flex items-center justify-center h-screen px-4"> 
+    <div id="fortuneTeller" class="fortune-container w-full">
+        <div class="text-center mb-8">
+            <h1 class="text-4xl md:text-5xl font-bold text-white neon-pink mt-12">🔮 7FS Fortune Teller</h1>
+            <p class="text-cyan-300 mt-4">Discover your path to 7 figure success</p>
+        </div>
+        
+        <div class="card w-full h-96 mb-8">
+            <div class="card-inner">
+                <div class="card-front bg-gray-900 bg-opacity-80 flex flex-col items-center justify-center p-8 neon-border">
+                    <div class="text-center">
+                        <svg class="w-24 h-24 mx-auto mb-6" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="50" cy="50" r="45" stroke="#00f7ff" stroke-width="2"></circle>
+                            <circle cx="50" cy="50" r="35" stroke="#ff00de" stroke-width="2"></circle>
+                            <path d="M50 5 L55 20 L70 20 L60 30 L65 45 L50 35 L35 45 L40 30 L30 20 L45 20 Z" fill="#ff00de"></path>
+                            <path d="M30 50 L40 55 L40 70 L50 60 L60 70 L60 55 L70 50 L60 45 L60 30 L50 40 L40 30 L40 45 Z" fill="#00f7ff"></path>
+                        </svg>
+                        <h2 class="text-2xl font-bold text-white mb-2">Your Fortune Awaits</h2>
+                        <p class="text-gray-300 mb-6">Click the button to reveal what the universe has in store for you</p>
+                    </div>
+                </div>
+                <div class="card-back bg-gray-900 bg-opacity-80 flex flex-col items-center justify-center p-8 neon-border">
+                    <div class="text-center">
+                        <h2 class="text-2xl font-bold text-white mb-4">Your Fortune</h2>
+                        <p id="fortuneText" class="text-xl text-cyan-300 italic"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <button id="getFortune" class="w-full py-4 px-6 rounded-lg bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold text-lg neon-button">
+            Get Your Fortune
+        </button>
+    </div>
+    
+    <!-- Crystal Ball Animation Screen -->
+    <div id="crystalBallScreen" class="crystal-ball-screen hidden">
+        <div class="crystal-ball-container">
+            <div class="crystal-ball">
+                <div class="universe" id="universe">
+                    <div class="stars" id="stars"></div>
+                    <div class="swirl"></div>
+                </div>
+                <div class="symbol-container" id="symbolContainer">
+                    <div class="fortune-symbol" id="fortuneSymbol"></div>
+                </div>
+            </div>
+            <div class="crystal-base"></div>
+        </div>
+        
+        <div class="loading-text" id="loadingText">
+            Revealing your fortune<span class="loading-dots"></span>
+        </div>
+    </div>
+    
+    <div id="animationContainer" class="fixed inset-0 pointer-events-none"></div>
+</section>
+
+    <!-- Footer -->
+    <footer class="py-10 px-4 border-t border-blue-900">
+        <div class="container mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <a href="index.html" class="mb-6 md:mb-0">
+                    <h2 class="text-2xl orbitron text-white neon-blue font-bold">THE 7 FIGURE SHIFT</h2>
+                </a>
+                <div class="flex space-x-6">
+                    <a href="" class="text-white hover:text-blue-400 transition-colors">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <a href="" class="text-white hover:text-blue-400 transition-colors">
+                        <i class="fab fa-linkedin text-xl"></i>
+                    </a>
+                    <a href="" class="text-white hover:text-blue-400 transition-colors">
+                        <i class="fab fa-twitter text-xl"></i>
+                    </a>
+                    <a href="" class="text-white hover:text-blue-400 transition-colors">
+                        <i class="fab fa-facebook text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-800 text-center text-gray-400">
+                <p>© 2025 The 7 Figure Shift. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <script>
+        // Fortune list
+        const fortunes = [
+            "Your efforts will soon pay off in ways you never imagined.",
+            "You are on the brink of a breakthrough that will change everything.",
+            "A powerful new partnership is about to elevate your business to new heights.",
+            "You're about to meet someone who will change the course of your career.",
+            "A golden opportunity is about to knock at your door—open it with confidence.",
+            "You're about to experience a windfall of wealth that will surprise you.",
+            "Your unique talents will soon attract the perfect business opportunity.",
+            "A transformative moment is coming that will propel you forward.",
+            "A new venture is about to take off, bringing abundance your way.",
+            "Your professional network will soon expand with more people who share your vision.",
+            "You will discover a hidden treasure that will unlock your future success.",
+            "The connections you make this year will bring you unimaginable success next year.",
+            "A new mentor will enter your life and guide you to unprecedented heights.",
+            "You're about to receive a major opportunity that will align perfectly with your goals.",
+            "Your persistence and dedication are about to pay off hugely.",
+            "You will soon experience a flood of positive energy and amazing connections.",
+            "A major investment you make will pay off in ways you can't yet imagine.",
+            "Your network is expanding in a way that will bring you endless possibilities. Trust your audience.",
+            "Something amazing is about to happen that will leave you speechless.",
+            "A life-changing business deal is closer than you think.",
+            "Your ability to connect with others will lead you to an unimaginable deal soon.",
+            "You are about to experience a powerful transformation in both business and health.",
+            "Your investments will soon bring returns beyond your wildest dreams.",
+            "A life-altering connection is about to bring you closer to your goals.",
+            "You are being guided toward something remarkable—you won't see it coming.",
+            "Your next step is cloaked in mystery, but trust that it will lead to success.",
+            "Someone will appear in your life, and their presence will positively shift your entire reality.",
+            "The wait is almost over—what's meant for you is on its way, and it will be even better than you imagined.",
+            "Trust that what's meant to be yours hasn't passed you by. A better opportunity is coming, and it's just around the corner.",
+            "It's okay to have doubts, but know this: the right opportunity is still out there, and it's on its way.",
+            "The perfect opportunity has been taking its time to find you, but soon, it will arrive in a way you never expected."
+        ];
+        
+        // Fortune symbols
+        const fortuneSymbols = [
+            { symbol: "★", meaning: "Success and recognition" },
+            { symbol: "$", meaning: "Wealth and prosperity" },
+            { symbol: "💡", meaning: "Inspiration and innovation" },
+            { symbol: "🤝", meaning: "Partnership and collaboration" }
+        ];
+        
+        // DOM elements
+        const emailForm = document.getElementById('emailForm');
+        const fortuneTeller = document.getElementById('fortuneTeller');
+        const submitEmailBtn = document.getElementById('submitEmail');
+        const emailInput = document.getElementById('email');
+        const emailError = document.getElementById('emailError');
+        const getFortuneBtn = document.getElementById('getFortune');
+        const fortuneText = document.getElementById('fortuneText');
+        const card = document.querySelector('.card');
+        const animationContainer = document.getElementById('animationContainer');
+        const crystalBallScreen = document.getElementById('crystalBallScreen');
+        const universe = document.getElementById('universe');
+        const stars = document.getElementById('stars');
+        const symbolContainer = document.getElementById('symbolContainer');
+        const fortuneSymbol = document.getElementById('fortuneSymbol');
+        const loadingText = document.getElementById('loadingText');
+        
+        // Track animation state
+        let animationInProgress = false;
+        
+        
+        // Get random fortune
+        function getRandomFortune() {
+            const randomIndex = Math.floor(Math.random() * fortunes.length);
+            return fortunes[randomIndex];
+        }
+        
+        // Get random symbol
+        function getRandomSymbol() {
+            const randomIndex = Math.floor(Math.random() * fortuneSymbols.length);
+            return fortuneSymbols[randomIndex];
+        }
+        
+        // Create stars in the universe
+        function createStars() {
+            stars.innerHTML = '';
+            
+            for (let i = 0; i < 100; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                
+                // Random position
+                const x = Math.random() * 100;
+                const y = Math.random() * 100;
+                
+                // Random size
+                const size = Math.random() * 2 + 1;
+                
+                // Random opacity
+                const opacity = Math.random() * 0.5 + 0.5;
+                
+                star.style.left = `${x}%`;
+                star.style.top = `${y}%`;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.opacity = opacity;
+                
+                // Add twinkling animation
+                const duration = Math.random() * 3 + 2;
+                star.animate([
+                    { opacity: opacity },
+                    { opacity: 0.2 },
+                    { opacity: opacity }
+                ], {
+                    duration: duration * 1000,
+                    iterations: Infinity
+                });
+                
+                stars.appendChild(star);
+            }
+        }
+        
+        // Create nebulas in the universe
+        function createNebulas() {
+            // Clear any existing nebulas
+            const existingNebulas = universe.querySelectorAll('.nebula');
+            existingNebulas.forEach(nebula => nebula.remove());
+            
+            const colors = [
+                'rgba(255, 0, 222, 0.3)',
+                'rgba(0, 247, 255, 0.3)',
+                'rgba(255, 215, 0, 0.3)',
+                'rgba(138, 43, 226, 0.3)'
+            ];
+            
+            for (let i = 0; i < 5; i++) {
+                const nebula = document.createElement('div');
+                nebula.className = 'nebula';
+                
+                // Random position
+                const x = Math.random() * 70 + 15;
+                const y = Math.random() * 70 + 15;
+                
+                // Random size
+                const size = Math.random() * 50 + 30;
+                
+                // Random color
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                
+                nebula.style.left = `${x}%`;
+                nebula.style.top = `${y}%`;
+                nebula.style.width = `${size}px`;
+                nebula.style.height = `${size}px`;
+                nebula.style.backgroundColor = color;
+                
+                // Add pulsing animation
+                const duration = Math.random() * 5 + 5;
+                nebula.animate([
+                    { transform: 'scale(1)', opacity: 0.5 },
+                    { transform: 'scale(1.2)', opacity: 0.7 },
+                    { transform: 'scale(1)', opacity: 0.5 }
+                ], {
+                    duration: duration * 1000,
+                    iterations: Infinity
+                });
+                
+                universe.appendChild(nebula);
+            }
+        }
+        
+        // Create sparkle effect
+        function createSparkles(element) {
+            // Clear any existing sparkles
+            const existingSparkles = element.querySelectorAll('.sparkle');
+            existingSparkles.forEach(sparkle => sparkle.remove());
+            
+            const colors = ['#ffffff', '#ff00de', '#00f7ff', '#ffff00'];
+            
+            for (let i = 0; i < 20; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                
+                // Random position around the symbol
+                const angle = Math.random() * Math.PI * 2;
+                const distance = Math.random() * 60 + 40;
+                const x = Math.cos(angle) * distance + 150;
+                const y = Math.sin(angle) * distance + 150;
+                
+                // Random size
+                const size = Math.random() * 4 + 2;
+                
+                // Random color
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                
+                sparkle.style.left = `${x}px`;
+                sparkle.style.top = `${y}px`;
+                sparkle.style.width = `${size}px`;
+                sparkle.style.height = `${size}px`;
+                sparkle.style.backgroundColor = color;
+                
+                element.appendChild(sparkle);
+                
+                // Animate sparkle
+                const duration = Math.random() * 1 + 0.5;
+                const delay = Math.random() * 0.5;
+                
+                sparkle.animate([
+                    { transform: 'scale(0)', opacity: 0 },
+                    { transform: 'scale(1)', opacity: 1, offset: 0.2 },
+                    { transform: 'scale(0)', opacity: 0 }
+                ], {
+                    duration: duration * 1000,
+                    delay: delay * 1000,
+                    easing: 'ease-out',
+                    fill: 'forwards'
+                });
+                
+                // Remove sparkle after animation completes
+                setTimeout(() => {
+                    if (sparkle.parentNode) {
+                        sparkle.remove();
+                    }
+                }, (duration + delay) * 1000 + 100);
+            }
+        }
+        
+        // Create confetti animation
+        function createConfetti() {
+            const colors = ['#ff00de', '#00f7ff', '#ffff00', '#ff0000', '#00ff00', '#ffffff'];
+            
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.top = -20 + 'px';
+                confetti.style.opacity = '1';
+                animationContainer.appendChild(confetti);
+                
+                const size = Math.random() * 10 + 5;
+                confetti.style.width = size + 'px';
+                confetti.style.height = size + 'px';
+                
+                const duration = Math.random() * 3 + 2;
+                const rotation = Math.random() * 360;
+                
+                confetti.animate([
+                    { transform: `translateY(0) rotate(0deg)`, opacity: 1 },
+                    { transform: `translateY(${window.innerHeight}px) rotate(${rotation}deg)`, opacity: 0 }
+                ], {
+                    duration: duration * 1000,
+                    easing: 'cubic-bezier(0.1, 0.8, 0.3, 1)'
+                });
+                
+                setTimeout(() => {
+                    if (confetti.parentNode) {
+                        confetti.remove();
+                    }
+                }, duration * 1000);
+            }
+        }
+        
+        // Create money animation
+        function createMoneyAnimation() {
+            const moneySymbols = ['💰', '💵', '💎', '🤑', '💸'];
+            
+            for (let i = 0; i < 30; i++) {
+                const money = document.createElement('div');
+                money.className = 'money';
+                money.textContent = moneySymbols[Math.floor(Math.random() * moneySymbols.length)];
+                money.style.left = Math.random() * 100 + 'vw';
+                money.style.top = -50 + 'px';
+                money.style.opacity = '1';
+                animationContainer.appendChild(money);
+                
+                const duration = Math.random() * 3 + 2;
+                const rotation = Math.random() * 360;
+                const horizontalMovement = (Math.random() - 0.5) * 200;
+                
+                money.animate([
+                    { transform: `translateY(0) translateX(0) rotate(0deg)`, opacity: 1 },
+                    { transform: `translateY(${window.innerHeight}px) translateX(${horizontalMovement}px) rotate(${rotation}deg)`, opacity: 0 }
+                ], {
+                    duration: duration * 1000,
+                    easing: 'cubic-bezier(0.1, 0.8, 0.3, 1)'
+                });
+                
+                setTimeout(() => {
+                    if (money.parentNode) {
+                        money.remove();
+                    }
+                }, duration * 1000);
+            }
+        }
+        
+        // Create fireworks animation
+        function createFireworks() {
+            const colors = ['#ff00de', '#00f7ff', '#ffff00', '#ff0000', '#00ff00'];
+            
+            for (let i = 0; i < 10; i++) {
+                setTimeout(() => {
+                    const x = Math.random() * window.innerWidth;
+                    const y = Math.random() * (window.innerHeight / 2);
+                    createFirework(x, y, colors[Math.floor(Math.random() * colors.length)]);
+                }, i * 300);
+            }
+        }
+        
+        function createFirework(x, y, color) {
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'firework';
+                particle.style.backgroundColor = color;
+                particle.style.left = x + 'px';
+                particle.style.top = y + 'px';
+                particle.style.opacity = '1';
+                animationContainer.appendChild(particle);
+                
+                const angle = Math.random() * Math.PI * 2;
+                const speed = Math.random() * 5 + 3;
+                const size = Math.random() * 4 + 2;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                
+                const duration = Math.random() * 1 + 1;
+                const dx = Math.cos(angle) * speed * 20;
+                const dy = Math.sin(angle) * speed * 20;
+                
+                particle.animate([
+                    { transform: 'translate(0, 0)', opacity: 1 },
+                    { transform: `translate(${dx}px, ${dy}px)`, opacity: 0 }
+                ], {
+                    duration: duration * 1000,
+                    easing: 'cubic-bezier(0.1, 0.8, 0.3, 1)'
+                });
+                
+                setTimeout(() => {
+                    if (particle.parentNode) {
+                        particle.remove();
+                    }
+                }, duration * 1000);
+            }
+        }
+        
+        // Reset crystal ball animation
+        function resetCrystalBallAnimation() {
+            // Reset universe
+            universe.style.animation = '';
+            universe.style.opacity = '0';
+            
+            // Reset symbol container
+            symbolContainer.style.opacity = '0';
+            
+            // Reset fortune symbol
+            fortuneSymbol.style.animation = '';
+            fortuneSymbol.textContent = '';
+            
+            // Reset loading text
+            loadingText.textContent = "Revealing your fortune...";
+            
+            // Clear any existing animations
+            const existingSparkles = symbolContainer.querySelectorAll('.sparkle');
+            existingSparkles.forEach(sparkle => sparkle.remove());
+        }
+        
+        // Start the crystal ball animation
+        function startCrystalBallAnimation(fortune) {
+            // If animation is already in progress, don't start another one
+            if (animationInProgress) return;
+            
+            animationInProgress = true;
+            
+            // Reset animation state
+            resetCrystalBallAnimation();
+            
+            // Show crystal ball screen
+            crystalBallScreen.classList.remove('hidden');
+            
+            // Create stars and nebulas
+            createStars();
+            createNebulas();
+            
+            // Get random symbol
+            const randomSymbol = getRandomSymbol();
+            fortuneSymbol.textContent = randomSymbol.symbol;
+            
+            // Fade in universe with animation
+            universe.style.animation = "fadeIn 0.5s forwards";
+            
+            // After 3 seconds, reveal the symbol
+            setTimeout(() => {
+                // Fade out universe
+                universe.style.animation = "fadeOut 0.5s forwards";
+                
+                // Show symbol container
+                symbolContainer.style.opacity = "1";
+                
+                // Animate symbol reveal
+                fortuneSymbol.style.animation = "symbolReveal 0.8s forwards";
+                
+                // Create sparkles around the symbol
+                createSparkles(symbolContainer);
+                
+                // Update loading text
+                loadingText.textContent = randomSymbol.meaning;
+                
+                // After 2 more seconds, complete the animation
+                setTimeout(() => {
+                    // Hide crystal ball screen
+                    crystalBallScreen.classList.add('hidden');
+                    
+                    // Show the fortune card
+                    card.classList.add('flipped');
+                    fortuneText.textContent = fortune;
+                    
+                    // Create animations after card flip
+                    setTimeout(() => {
+                        createConfetti();
+                        createMoneyAnimation();
+                        createFireworks();
+                        
+                        // Reset card after 5 seconds
+                        setTimeout(() => {
+                            card.classList.remove('flipped');
+                            animationInProgress = false;
+                        }, 5000);
+                    }, 800);
+                }, 2000);
+            }, 3000);
+        }
+        
+        // Get fortune handler
+        getFortuneBtn.addEventListener('click', () => {
+            // Only proceed if no animation is currently running
+            if (!animationInProgress) {
+                const fortune = getRandomFortune();
+                startCrystalBallAnimation(fortune);
+            }
+        });
+
+        // Mobile menu functionality
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const closeMenuButton = document.getElementById('close-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.remove('translate-x-full');
+        });
+        
+        closeMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.add('translate-x-full');
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('translate-x-full');
+            });
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9470a869c15ae677',t:'MTc0ODQ2NTc3OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><iframe height="1" width="1" style="position: absolute; top: 0px; left: 0px; border: none; visibility: hidden;"></iframe>
+<script>    
+function handleSubmit(event) {
+      event.preventDefault();
+      const form = event.target;
+
+      fetch(form.action, {
+        method: form.method,
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      }).then(() => {
+        document.getElementById('email-section').style.display = 'none';
+        document.getElementById('game').classList.remove('hidden');
+      }).catch(() => {
+        alert("There was an error submitting your email. Please try again.");
+      });
+    }
+</script>
+</body>
+</html>
