@@ -674,14 +674,14 @@
             
             <div class="max-w-4xl mx-auto">
                 <div class="video-container rounded-lg overflow-hidden">
-                    <div class="aspect-w-16 aspect-h-9 bg-gray-900 flex items-center justify-center">
-                        <div class="text-center p-10">
-                            <div class="w-20 h-20 mx-auto mb-6 rounded-full flex items-center justify-center border-2 border-blue-400" style="box-shadow: 0 0 15px rgba(0, 243, 255, 0.5);">
-                                <i class="fas fa-play text-2xl text-white neon-blue"></i>
-                            </div>
-
-            </div>
-        </div>
+                    <div class="w-full aspect-w-16 aspect-h-9">
+                    <video class="w-full rounded-lg shadow-lg" controls autoplay muted loop>
+                        <source src="videos/.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    </div>
+                </div>
+                </div>
     </section>
 
     <!-- Fortune Email Collection Form -->
@@ -755,27 +755,6 @@
                         <button type="submit" class="neon-button w-full py-3 rounded-md">NOTIFY ME</button>
                     </div>
                 </form>
-            </div>
-        </div>
-    </div>
-
-    <!-- Video Modal -->
-    <div id="video-modal" class="fixed inset-0 z-50 hidden modal">
-        <div class="min-h-screen flex items-center justify-center p-4">
-            <div class="modal-content max-w-4xl w-full rounded-lg p-4 relative">
-                <button id="close-video" class="absolute top-4 right-4 text-gray-400 hover:text-white z-10">
-                    <i class="fas fa-times text-xl"></i>
-                </button>
-                <div class="aspect-w-16 aspect-h-9 bg-black rounded-lg">
-                    <div class="flex items-center justify-center">
-                        <div class="text-center">
-                            <div class="w-20 h-20 mx-auto rounded-full flex items-center justify-center border-2 border-blue-400 animate-pulse" style="box-shadow: 0 0 15px rgba(0, 243, 255, 0.5);">
-                                <i class="fas fa-video text-2xl neon-blue"></i>
-                            </div>
-                            <p class="mt-4 text-gray-300">Demo Video Placeholder</p>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
