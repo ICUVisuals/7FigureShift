@@ -1142,6 +1142,168 @@
     </div>
     </form>
 </main>
+
+<!-- Fortune Teller Game -->
+    <section id="game" class="flex items-center justify-center h-screen px-4 hidden"> 
+    <div id="fortuneTeller" class="fortune-container w-full">
+        <div class="text-center mb-8">
+            <h1 class="text-4xl md:text-5xl font-bold text-white neon-pink mt-12">🔮 7FS Fortune Teller</h1>
+            <p class="text-cyan-300 mt-4">Discover your path to 7 figure success</p>
+        </div>
+        
+        <div class="card w-full h-96 mb-8">
+            <div class="card-inner">
+                <div class="card-front bg-gray-900 bg-opacity-80 flex flex-col items-center justify-center p-8 neon-border">
+                    <div class="text-center">
+                        <svg class="w-24 h-24 mx-auto mb-6" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="50" cy="50" r="45" stroke="#00f7ff" stroke-width="2"></circle>
+                            <circle cx="50" cy="50" r="35" stroke="#ff00de" stroke-width="2"></circle>
+                            <path d="M50 5 L55 20 L70 20 L60 30 L65 45 L50 35 L35 45 L40 30 L30 20 L45 20 Z" fill="#ff00de"></path>
+                            <path d="M30 50 L40 55 L40 70 L50 60 L60 70 L60 55 L70 50 L60 45 L60 30 L50 40 L40 30 L40 45 Z" fill="#00f7ff"></path>
+                        </svg>
+                        <h2 class="text-2xl font-bold text-white mb-2">Your Fortune Awaits</h2>
+                        <p class="text-gray-300 mb-6">Click the button to reveal what the universe has in store for you</p>
+                    </div>
+                </div>
+                <div class="card-back bg-gray-900 bg-opacity-80 flex flex-col items-center justify-center p-8 neon-border">
+                    <div class="text-center">
+                        <h2 class="text-2xl font-bold text-white mb-4">Your Fortune</h2>
+                        <p id="fortuneText" class="text-xl text-cyan-300 italic"></p>
+                    </div>
+                </div>
+            </div>
+    </div>
+    
+ <!-- Action Buttons -->
+        <div class="action-buttons">
+            <a href="index.html" id="backButton" class="back-button py-3 px-4 rounded-lg bg-gray-700 text-white font-bold text-sm sm:text-base cyan-button flex items-center justify-center">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                </svg>
+            </a>
+                        
+            <button id="getFortune" class="fortune-button py-3 px-4 rounded-lg bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold text-sm sm:text-base neon-button flex items-center justify-center">
+                <svg class="w-5 h-5 mr-2 " fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
+                </svg>
+                Get Your Fortune
+            </button>
+            
+            <button id="shareButton" class="share-button py-3 px-4 rounded-lg bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-bold text-sm sm:text-base blue-button flex items-center justify-center">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path>
+                </svg>
+            </button>
+        </div>
+    </div>
+    
+    <!-- Crystal Ball Animation Screen -->
+    <div id="crystalBallScreen" class="crystal-ball-screen hidden">
+        <div class="crystal-ball-container">
+            <div class="crystal-ball">
+                <div class="universe" id="universe">
+                    <div class="stars" id="stars"></div>
+                    <div class="swirl"></div>
+                </div>
+                <div class="symbol-container" id="symbolContainer">
+                    <div class="fortune-symbol" id="fortuneSymbol"></div>
+                </div>
+            </div>
+            <div class="crystal-base"></div>
+        </div>
+        
+        <div class="loading-text" id="loadingText">
+            Revealing your fortune<span class="loading-dots"></span>
+        </div>
+    </div>
+    
+    <!-- Share Modal -->
+    <div id="shareModal" class="modal">
+        <div class="modal-content neon-border">
+            <span class="close-modal" id="closeModal">×</span>
+            <h2 class="text-2xl font-bold text-white mb-4">Share Your Fortune</h2>
+            <p class="text-gray-300 mb-6">Share your 7 Figure Shift fortune with your network</p>
+            
+            <div class="social-buttons">
+                <button class="social-button facebook">
+                    <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18.77 7.46H14.5v-1.9c0-.9.6-1.1 1-1.1h3V.5h-4.33C10.24.5 9.5 3.44 9.5 5.32v2.15h-3v4h3v12h5v-12h3.85l.42-4z"></path>
+                    </svg>
+                    Facebook
+                </button>
+                <button class="social-button linkedin">
+                    <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path>
+                    </svg>
+                    LinkedIn
+                </button>
+                <button class="social-button twitter">
+                    <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"></path>
+                    </svg>
+                    Twitter
+                </button>
+                <button id="downloadButton" class="social-button download">
+                    <span id="downloadSpinner" class="download-spinner hidden"></span>
+                    <svg id="downloadIcon" class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                    </svg>
+                    <span id="downloadText">Download as PNG</span>
+                </button>
+                <p id="downloadError" class="error-message hidden">Error creating image. Please try again.</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Hidden Fortune Card for Download -->
+    <div id="fortuneCardForDownload">
+        <div class="fortune-card-header">
+            <h1 class="text-4xl md:text-5xl font-bold text-white neon-pink mt-2 mb-6">🔮 7FS Fortune Teller</h1>
+            <p class="text-cyan-300 mt-4 mb-2">Discover your path to 7 figure success</p>
+        </div>
+        
+        <div class="fortune-card-box neon-border">
+            <div class="fortune-card-icon">
+                <svg class="w-24 h-24" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="45" stroke="#00f7ff" stroke-width="2"></circle>
+                    <circle cx="50" cy="50" r="35" stroke="#ff00de" stroke-width="2"></circle>
+                    <path d="M50 5 L55 20 L70 20 L60 30 L65 45 L50 35 L35 45 L40 30 L30 20 L45 20 Z" fill="#ff00de"></path>
+                    <path d="M30 50 L40 55 L40 70 L50 60 L60 70 L60 55 L70 50 L60 45 L60 30 L50 40 L40 30 L40 45 Z" fill="#00f7ff"></path>
+                </svg>
+            </div>
+            <div class="fortune-card-text italic" id="downloadFortuneText"></div>
+        </div>
+        
+        <div class="fortune-card-buttons">
+                 <div class="back-button py-3 px-4 rounded-lg bg-gray-700 text-white font-bold text-sm sm:text-base flex items-center justify-center">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                </svg>
+            </div>
+            
+           <div class="fortune-card-button fortune-card-fortune py-3 px-4 rounded-lg bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold text-sm sm:text-base flex items-center justify-center">
+            <div class="flex items-center justify-center gap-2">
+                <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
+                </svg>
+                <span class="fortune-text">GET YOUR FORTUNE</span>
+            </div>
+            </div>
+                    
+            <div class="fortune-card-button fortune-card-share py-3 px-4 rounded-lg bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-bold text-sm sm:text-base flex items-center justify-center">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path>
+                </svg>
+            </div>
+        </div>
+        
+        <div class="fortune-card-footer">www.the7fs.com</div>
+    </div>
+    
+    <div id="animationContainer" class="fixed inset-0 pointer-events-none"></div>
+    
+    </section>
     
     <!-- Footer -->
     <footer class="py-10 px-4 border-t border-blue-900">
@@ -1211,6 +1373,659 @@
             });
         });
 </script>
+<script>
+        // Fortune list
+        const fortunes = [
+            "Your efforts will soon pay off in ways you never imagined.",
+            "You are on the brink of a breakthrough that will change everything.",
+            "A powerful new partnership is about to elevate your business to new heights.",
+            "You're about to meet someone who will change the course of your career.",
+            "A golden opportunity is about to knock at your door—open it with confidence.",
+            "You're about to experience a windfall of wealth that will surprise you.",
+            "Your unique talents will soon attract the perfect business opportunity.",
+            "A transformative moment is coming that will propel you forward.",
+            "A new venture is about to take off, bringing abundance your way.",
+            "Your professional network will soon expand with more people who share your vision.",
+            "You will discover a hidden treasure that will unlock your future success.",
+            "The connections you make this year will bring you unimaginable success next year.",
+            "A new mentor will enter your life and guide you to unprecedented heights.",
+            "You're about to receive a major opportunity that will align perfectly with your goals.",
+            "Your persistence and dedication are about to pay off hugely.",
+            "You will soon experience a flood of positive energy and amazing connections.",
+            "A major investment you make will pay off in ways you can't yet imagine.",
+            "Your network is expanding in a way that will bring you endless possibilities. Trust your audience.",
+            "Something amazing is about to happen that will leave you speechless.",
+            "A life-changing business deal is closer than you think.",
+            "Your ability to connect with others will lead you to an unimaginable deal soon.",
+            "You are about to experience a powerful transformation in both business and health.",
+            "Your investments will soon bring returns beyond your wildest dreams.",
+            "A life-altering connection is about to bring you closer to your goals.",
+            "You are being guided toward something remarkable—you won't see it coming.",
+            "Your next step is cloaked in mystery, but trust that it will lead to success.",
+            "Someone will appear in your life, and their presence will positively shift your entire reality.",
+            "The wait is almost over—what's meant for you is on its way, and it will be even better than you imagined.",
+            "Trust that what's meant to be yours hasn't passed you by. A better opportunity is coming, and it's just around the corner.",
+            "It's okay to have doubts, but know this: the right opportunity is still out there, and it's on its way.",
+            "The perfect opportunity has been taking its time to find you, but soon, it will arrive in a way you never expected."
+        ];
+        
+        // Fortune symbols
+        const fortuneSymbols = [
+            { symbol: "★", meaning: "Success and recognition" },
+            { symbol: "$", meaning: "Wealth and prosperity" },
+            { symbol: "💡", meaning: "Inspiration and innovation" },
+            { symbol: "🤝", meaning: "Partnership and collaboration" }
+        ];
+        
+        // DOM elements
+        const fortuneTeller = document.getElementById('fortuneTeller');
+        const getFortuneBtn = document.getElementById('getFortune');
+        const backButton = document.getElementById('backButton');
+        const shareButton = document.getElementById('shareButton');
+        const fortuneText = document.getElementById('fortuneText');
+        const downloadFortuneText = document.getElementById('downloadFortuneText');
+        const card = document.querySelector('.card');
+        const animationContainer = document.getElementById('animationContainer');
+        const crystalBallScreen = document.getElementById('crystalBallScreen');
+        const universe = document.getElementById('universe');
+        const stars = document.getElementById('stars');
+        const symbolContainer = document.getElementById('symbolContainer');
+        const fortuneSymbol = document.getElementById('fortuneSymbol');
+        const loadingText = document.getElementById('loadingText');
+        const shareModal = document.getElementById('shareModal');
+        const closeModal = document.getElementById('closeModal');
+        const fortuneCardForDownload = document.getElementById('fortuneCardForDownload');
+        const downloadButton = document.getElementById('downloadButton');
+        const downloadSpinner = document.getElementById('downloadSpinner');
+        const downloadText = document.getElementById('downloadText');
+        const downloadIcon = document.getElementById('downloadIcon');
+        const downloadError = document.getElementById('downloadError');
+        
+        // Track animation state
+        let animationInProgress = false;
+        let currentFortune = "";
+        let downloadInProgress = false;
+        
+        // Check if html2canvas is loaded
+        function isHtml2CanvasLoaded() {
+            return typeof html2canvas === 'function';
+        }
+        
+        // Share button handler
+        shareButton.addEventListener('click', () => {
+            if (currentFortune) {
+                // Update the download card with current fortune
+                downloadFortuneText.textContent = currentFortune;
+                shareModal.classList.add('active');
+                
+                // Reset download button state
+                downloadSpinner.classList.add('hidden');
+                downloadIcon.classList.remove('hidden');
+                downloadText.textContent = 'Download as PNG';
+                downloadError.classList.add('hidden');
+            } else {
+                alert('Please get your fortune first before sharing!');
+            }
+        });
+        
+        // Close modal handler
+        closeModal.addEventListener('click', () => {
+            shareModal.classList.remove('active');
+        });
+        
+        // Close modal when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === shareModal) {
+                shareModal.classList.remove('active');
+            }
+        });
+        
+        // Get random fortune
+        function getRandomFortune() {
+            const randomIndex = Math.floor(Math.random() * fortunes.length);
+            return fortunes[randomIndex];
+        }
+        
+        // Get random symbol
+        function getRandomSymbol() {
+            const randomIndex = Math.floor(Math.random() * fortuneSymbols.length);
+            return fortuneSymbols[randomIndex];
+        }
+        
+        // Create stars in the universe
+        function createStars() {
+            stars.innerHTML = '';
+            
+            for (let i = 0; i < 100; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                
+                // Random position
+                const x = Math.random() * 100;
+                const y = Math.random() * 100;
+                
+                // Random size
+                const size = Math.random() * 2 + 1;
+                
+                // Random opacity
+                const opacity = Math.random() * 0.5 + 0.5;
+                
+                star.style.left = `${x}%`;
+                star.style.top = `${y}%`;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.opacity = opacity;
+                
+                // Add twinkling animation
+                const duration = Math.random() * 3 + 2;
+                star.animate([
+                    { opacity: opacity },
+                    { opacity: 0.2 },
+                    { opacity: opacity }
+                ], {
+                    duration: duration * 1000,
+                    iterations: Infinity
+                });
+                
+                stars.appendChild(star);
+            }
+        }
+        
+        // Create nebulas in the universe
+        function createNebulas() {
+            // Clear any existing nebulas
+            const existingNebulas = universe.querySelectorAll('.nebula');
+            existingNebulas.forEach(nebula => nebula.remove());
+            
+            const colors = [
+                'rgba(255, 0, 222, 0.3)',
+                'rgba(0, 247, 255, 0.3)',
+                'rgba(255, 215, 0, 0.3)',
+                'rgba(138, 43, 226, 0.3)'
+            ];
+            
+            for (let i = 0; i < 5; i++) {
+                const nebula = document.createElement('div');
+                nebula.className = 'nebula';
+                
+                // Random position
+                const x = Math.random() * 70 + 15;
+                const y = Math.random() * 70 + 15;
+                
+                // Random size
+                const size = Math.random() * 50 + 30;
+                
+                // Random color
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                
+                nebula.style.left = `${x}%`;
+                nebula.style.top = `${y}%`;
+                nebula.style.width = `${size}px`;
+                nebula.style.height = `${size}px`;
+                nebula.style.backgroundColor = color;
+                
+                // Add pulsing animation
+                const duration = Math.random() * 5 + 5;
+                nebula.animate([
+                    { transform: 'scale(1)', opacity: 0.5 },
+                    { transform: 'scale(1.2)', opacity: 0.7 },
+                    { transform: 'scale(1)', opacity: 0.5 }
+                ], {
+                    duration: duration * 1000,
+                    iterations: Infinity
+                });
+                
+                universe.appendChild(nebula);
+            }
+        }
+        
+        // Create sparkle effect
+        function createSparkles(element) {
+            // Clear any existing sparkles
+            const existingSparkles = element.querySelectorAll('.sparkle');
+            existingSparkles.forEach(sparkle => sparkle.remove());
+            
+            const colors = ['#ffffff', '#ff00de', '#00f7ff', '#ffff00'];
+            
+            for (let i = 0; i < 20; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                
+                // Random position around the symbol
+                const angle = Math.random() * Math.PI * 2;
+                const distance = Math.random() * 60 + 40;
+                const x = Math.cos(angle) * distance + 150;
+                const y = Math.sin(angle) * distance + 150;
+                
+                // Random size
+                const size = Math.random() * 4 + 2;
+                
+                // Random color
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                
+                sparkle.style.left = `${x}px`;
+                sparkle.style.top = `${y}px`;
+                sparkle.style.width = `${size}px`;
+                sparkle.style.height = `${size}px`;
+                sparkle.style.backgroundColor = color;
+                
+                element.appendChild(sparkle);
+                
+                // Animate sparkle
+                const duration = Math.random() * 1 + 0.5;
+                const delay = Math.random() * 0.5;
+                
+                sparkle.animate([
+                    { transform: 'scale(0)', opacity: 0 },
+                    { transform: 'scale(1)', opacity: 1, offset: 0.2 },
+                    { transform: 'scale(0)', opacity: 0 }
+                ], {
+                    duration: duration * 1000,
+                    delay: delay * 1000,
+                    easing: 'ease-out',
+                    fill: 'forwards'
+                });
+                
+                // Remove sparkle after animation completes
+                setTimeout(() => {
+                    if (sparkle.parentNode) {
+                        sparkle.remove();
+                    }
+                }, (duration + delay) * 1000 + 100);
+            }
+        }
+        
+        // Create confetti animation
+        function createConfetti() {
+            const colors = ['#ff00de', '#00f7ff', '#ffff00', '#ff0000', '#00ff00', '#ffffff'];
+            
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.top = -20 + 'px';
+                confetti.style.opacity = '1';
+                animationContainer.appendChild(confetti);
+                
+                const size = Math.random() * 10 + 5;
+                confetti.style.width = size + 'px';
+                confetti.style.height = size + 'px';
+                
+                const duration = Math.random() * 3 + 2;
+                const rotation = Math.random() * 360;
+                
+                confetti.animate([
+                    { transform: `translateY(0) rotate(0deg)`, opacity: 1 },
+                    { transform: `translateY(${window.innerHeight}px) rotate(${rotation}deg)`, opacity: 0 }
+                ], {
+                    duration: duration * 1000,
+                    easing: 'cubic-bezier(0.1, 0.8, 0.3, 1)'
+                });
+                
+                setTimeout(() => {
+                    if (confetti.parentNode) {
+                        confetti.remove();
+                    }
+                }, duration * 1000);
+            }
+        }
+        
+        // Create money animation
+        function createMoneyAnimation() {
+            const moneySymbols = ['💰', '💵', '💎', '🤑', '💸'];
+            
+            for (let i = 0; i < 30; i++) {
+                const money = document.createElement('div');
+                money.className = 'money';
+                money.textContent = moneySymbols[Math.floor(Math.random() * moneySymbols.length)];
+                money.style.left = Math.random() * 100 + 'vw';
+                money.style.top = -50 + 'px';
+                money.style.opacity = '1';
+                animationContainer.appendChild(money);
+                
+                const duration = Math.random() * 3 + 2;
+                const rotation = Math.random() * 360;
+                const horizontalMovement = (Math.random() - 0.5) * 200;
+                
+                money.animate([
+                    { transform: `translateY(0) translateX(0) rotate(0deg)`, opacity: 1 },
+                    { transform: `translateY(${window.innerHeight}px) translateX(${horizontalMovement}px) rotate(${rotation}deg)`, opacity: 0 }
+                ], {
+                    duration: duration * 1000,
+                    easing: 'cubic-bezier(0.1, 0.8, 0.3, 1)'
+                });
+                
+                setTimeout(() => {
+                    if (money.parentNode) {
+                        money.remove();
+                    }
+                }, duration * 1000);
+            }
+        }
+        
+        // Create fireworks animation
+        function createFireworks() {
+            const colors = ['#ff00de', '#00f7ff', '#ffff00', '#ff0000', '#00ff00'];
+            
+            for (let i = 0; i < 10; i++) {
+                setTimeout(() => {
+                    const x = Math.random() * window.innerWidth;
+                    const y = Math.random() * (window.innerHeight / 2);
+                    createFirework(x, y, colors[Math.floor(Math.random() * colors.length)]);
+                }, i * 300);
+            }
+        }
+        
+        function createFirework(x, y, color) {
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'firework';
+                particle.style.backgroundColor = color;
+                particle.style.left = x + 'px';
+                particle.style.top = y + 'px';
+                particle.style.opacity = '1';
+                animationContainer.appendChild(particle);
+                
+                const angle = Math.random() * Math.PI * 2;
+                const speed = Math.random() * 5 + 3;
+                const size = Math.random() * 4 + 2;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                
+                const duration = Math.random() * 1 + 1;
+                const dx = Math.cos(angle) * speed * 20;
+                const dy = Math.sin(angle) * speed * 20;
+                
+                particle.animate([
+                    { transform: 'translate(0, 0)', opacity: 1 },
+                    { transform: `translate(${dx}px, ${dy}px)`, opacity: 0 }
+                ], {
+                    duration: duration * 1000,
+                    easing: 'cubic-bezier(0.1, 0.8, 0.3, 1)'
+                });
+                
+                setTimeout(() => {
+                    if (particle.parentNode) {
+                        particle.remove();
+                    }
+                }, duration * 1000);
+            }
+        }
+        
+        // Reset crystal ball animation
+        function resetCrystalBallAnimation() {
+            // Reset universe
+            universe.style.animation = '';
+            universe.style.opacity = '0';
+            
+            // Reset symbol container
+            symbolContainer.style.opacity = '0';
+            
+            // Reset fortune symbol
+            fortuneSymbol.style.animation = '';
+            fortuneSymbol.textContent = '';
+            
+            // Reset loading text
+            loadingText.textContent = "Revealing your fortune...";
+            
+            // Clear any existing animations
+            const existingSparkles = symbolContainer.querySelectorAll('.sparkle');
+            existingSparkles.forEach(sparkle => sparkle.remove());
+        }
+        
+        // Start the crystal ball animation
+        function startCrystalBallAnimation(fortune) {
+            // If animation is already in progress, don't start another one
+            if (animationInProgress) return;
+            
+            animationInProgress = true;
+            currentFortune = fortune;
+            
+            // Reset animation state
+            resetCrystalBallAnimation();
+            
+            // Show crystal ball screen
+            crystalBallScreen.classList.remove('hidden');
+            
+            // Create stars and nebulas
+            createStars();
+            createNebulas();
+            
+            // Get random symbol
+            const randomSymbol = getRandomSymbol();
+            fortuneSymbol.textContent = randomSymbol.symbol;
+            
+            // Fade in universe with animation
+            universe.style.animation = "fadeIn 0.5s forwards";
+            
+            // After 3 seconds, reveal the symbol
+            setTimeout(() => {
+                // Fade out universe
+                universe.style.animation = "fadeOut 0.5s forwards";
+                
+                // Show symbol container
+                symbolContainer.style.opacity = "1";
+                
+                // Animate symbol reveal
+                fortuneSymbol.style.animation = "symbolReveal 0.8s forwards";
+                
+                // Create sparkles around the symbol
+                createSparkles(symbolContainer);
+                
+                // Update loading text
+                loadingText.textContent = randomSymbol.meaning;
+                
+                // After 2 more seconds, complete the animation
+                setTimeout(() => {
+                    // Hide crystal ball screen
+                    crystalBallScreen.classList.add('hidden');
+                    
+                    // Show the fortune card
+                    card.classList.add('flipped');
+                    fortuneText.textContent = fortune;
+                    downloadFortuneText.textContent = fortune;
+                    
+                    // Create animations after card flip
+                    setTimeout(() => {
+                        createConfetti();
+                        createMoneyAnimation();
+                        createFireworks();
+                        
+                        // Don't automatically reset the card - keep it flipped until user clicks "Get Fortune" again
+                        animationInProgress = false;
+                    }, 800);
+                }, 2000);
+            }, 3000);
+        }
+        
+        // Get fortune handler
+        getFortuneBtn.addEventListener('click', () => {
+            // Only proceed if no animation is currently running
+            if (!animationInProgress) {
+                // If card is already flipped, flip it back first
+                if (card.classList.contains('flipped')) {
+                    card.classList.remove('flipped');
+                    
+                    // Wait for flip animation to complete before starting new fortune
+                    setTimeout(() => {
+                        const fortune = getRandomFortune();
+                        startCrystalBallAnimation(fortune);
+                    }, 800);
+                } else {
+                    const fortune = getRandomFortune();
+                    startCrystalBallAnimation(fortune);
+                }
+            }
+        });
+        
+        // Download fortune as PNG - Completely rewritten for reliability
+        function downloadFortuneAsPNG() {
+            // Prevent multiple clicks
+            if (downloadInProgress) {
+                return;
+            }
+            
+            // Make sure we have a fortune to download
+            if (!currentFortune) {
+                alert('Please get your fortune first before downloading!');
+                return;
+            }
+            
+            // Start download process
+            downloadInProgress = true;
+            
+            // Show loading state
+            downloadSpinner.classList.remove('hidden');
+            downloadIcon.classList.add('hidden');
+            downloadText.textContent = 'Creating image...';
+            downloadError.classList.add('hidden');
+            
+            // Make sure html2canvas is loaded
+            if (!isHtml2CanvasLoaded()) {
+                console.error('html2canvas not loaded');
+                showDownloadError('Image library not loaded. Please refresh and try again.');
+                return;
+            }
+            
+            try {
+                // Prepare the download card
+                const downloadCard = document.getElementById('fortuneCardForDownload');
+                
+                // Make sure the card is in the DOM but not visible
+                downloadCard.style.position = 'fixed';
+                downloadCard.style.left = '-9999px';
+                downloadCard.style.top = '-9999px';
+                downloadCard.style.opacity = '1';
+                downloadCard.style.display = 'block';
+                downloadCard.style.zIndex = '-1';
+                
+                // Update the fortune text
+                downloadFortuneText.textContent = currentFortune;
+                
+                // Force browser to render the card before capturing
+                setTimeout(() => {
+                    // Use html2canvas with robust options
+                    html2canvas(downloadCard, {
+                        backgroundColor: '#0f0f1a',
+                        scale: 2, // Higher quality
+                        logging: false,
+                        useCORS: true,
+                        allowTaint: true,
+                        foreignObjectRendering: false // More compatible
+                    }).then(canvas => {
+                        try {
+                            // Convert canvas to blob for better compatibility
+                            canvas.toBlob(function(blob) {
+                                if (!blob) {
+                                    throw new Error('Failed to create image blob');
+                                }
+                                
+                                // Create object URL from blob
+                                const url = URL.createObjectURL(blob);
+                                
+                                // Create download link
+                                const link = document.createElement('a');
+                                link.href = url;
+                                link.download = '7fs-fortune.png';
+                                
+                                // Append to body, click, and remove
+                                document.body.appendChild(link);
+                                link.click();
+                                document.body.removeChild(link);
+                                
+                                // Clean up
+                                setTimeout(() => {
+                                    URL.revokeObjectURL(url);
+                                    resetDownloadButton();
+                                }, 100);
+                            }, 'image/png', 1.0); // Maximum quality
+                        } catch (error) {
+                            console.error('Error in blob creation:', error);
+                            showDownloadError('Failed to create downloadable image.');
+                        }
+                    }).catch(error => {
+                        console.error('Error in html2canvas:', error);
+                        showDownloadError('Failed to generate image. Please try again.');
+                    });
+                }, 200); // Give time for the DOM to update
+            } catch (error) {
+                console.error('General error in download process:', error);
+                showDownloadError('An unexpected error occurred. Please try again.');
+            }
+        }
+        
+        // Reset download button to initial state
+        function resetDownloadButton() {
+            downloadInProgress = false;
+            downloadSpinner.classList.add('hidden');
+            downloadIcon.classList.remove('hidden');
+            downloadText.textContent = 'Download as PNG';
+            downloadError.classList.add('hidden');
+        }
+        
+        // Show download error
+        function showDownloadError(message) {
+            downloadInProgress = false;
+            downloadSpinner.classList.add('hidden');
+            downloadIcon.classList.remove('hidden');
+            downloadText.textContent = 'Try Again';
+            downloadError.textContent = message;
+            downloadError.classList.remove('hidden');
+        }
+        
+        // Social media share handlers
+        document.querySelectorAll('.social-button').forEach(button => {
+            if (button.id !== 'downloadButton') {
+                button.addEventListener('click', () => {
+                    if (!currentFortune) {
+                        alert('Please get your fortune first before sharing!');
+                        return;
+                    }
+                    
+                    const text = encodeURIComponent(`My 7 Figure Shift Fortune: ${currentFortune} #7FigureShift`);
+                    const url = encodeURIComponent('https://the7figureshift.com');
+                    
+                    let shareUrl = '';
+                    
+                    if (button.classList.contains('facebook')) {
+                        shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${text}`;
+                        window.open(shareUrl, '_blank', 'width=600,height=400');
+                    } else if (button.classList.contains('twitter')) {
+                        shareUrl = `https://twitter.com/intent/tweet?text=${text}&url=${url}`;
+                        window.open(shareUrl, '_blank', 'width=600,height=400');
+                    } else if (button.classList.contains('linkedin')) {
+                        shareUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=My%207%20Figure%20Shift%20Fortune&summary=${text}`;
+                        window.open(shareUrl, '_blank', 'width=600,height=400');
+                    }
+                    
+                    // Close modal after social share
+                    shareModal.classList.remove('active');
+                });
+            }
+        });
+        
+        // Direct event listener for download button
+        downloadButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            downloadFortuneAsPNG();
+        });
+        
+        // Initialize the app
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if html2canvas is loaded
+            if (!isHtml2CanvasLoaded()) {
+                console.warn('html2canvas not loaded initially, attempting to load it');
+                
+                // Try to load html2canvas if not already loaded
+                const script = document.createElement('script');
+                script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
+                script.async = true;
+                document.head.appendChild(script);
+            }
+        });
+    </script>
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9470a869c15ae677',t:'MTc0ODQ2NTc3OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><iframe height="1" width="1" style="position: absolute; top: 0px; left: 0px; border: none; visibility: hidden;"></iframe>
 <script>    
 function handleSubmit(event) {
@@ -1223,7 +2038,7 @@ function handleSubmit(event) {
         headers: { 'Accept': 'application/json' }
       }).then(() => {
         document.getElementById('email-section').style.display = 'none';
-        window.location.href = "fortunegame.html";
+        document.getElementById('game').classList.remove('hidden');
       }).catch(() => {
         alert("There was an error submitting your email. Please try again.");
       });
